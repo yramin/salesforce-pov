@@ -1,12 +1,16 @@
 # Salesforce POV Terraform
 
+## Prerequisites
+
+* AWS Terraform Provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
+
 ## Order To Deploy
 
 1. build-controller-copilot
 2. configure-controller
 3. build-transit-spoke
 
-## build-controller-copilot
+## 1. build-controller-copilot
 
 - Update values in `build-controller-copilot/terraform.tfvars`.
 
@@ -17,12 +21,12 @@
   }
   ```
 
-## configure-controller
+## 2. configure-controller
 
 - Update values in `configure-controller/terraform.tfvars`.
 - For information on how to create the .json file for GCP, see https://docs.aviatrix.com/HowTos/CreateGCloudAccount.html.
 
-## build-transit-spoke
+## 3. build-transit-spoke
 
 - Update values in `build-transit-spoke/terraform.tfvars`.
 
