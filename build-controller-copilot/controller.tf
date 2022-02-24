@@ -7,7 +7,7 @@ module "aviatrix-iam-roles" {
 }
 
 module "aviatrix-controller-build" {
-  source                 = "./modules/aviatrix-controller-build"
+  source                 = "github.com/AviatrixSystems/terraform-modules.git//aviatrix-controller-build?ref=terraform_0.14"
   vpc                    = aws_vpc.vpc.id
   subnet                 = aws_subnet.subnet.id
   keypair                = "us-west-1"
