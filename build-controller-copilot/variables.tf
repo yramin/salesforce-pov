@@ -15,5 +15,5 @@ variable "aws_account_id" {
 }
 
 variable "incoming_ssl_cidr" {
-  type = list
+  type = list(any)
 }
