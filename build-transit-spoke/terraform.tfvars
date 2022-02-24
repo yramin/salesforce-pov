@@ -1,0 +1,5 @@
+aws_account_name       = "Salesforce-AWS"
+gcp_account_name       = "Salesforce-GCP"
+aviatrix_controller_ip = "54.151.96.222"
+aviatrix_username      = "admin"
+aviatrix_password      = "Aviatrix123#"
