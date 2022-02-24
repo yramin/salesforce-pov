@@ -21,7 +21,3 @@ variable "gcloud_project_id" {
 variable "gcloud_project_credentials_filepath" {
   type = string
 }
-
-# variable "copilot_address" {
-#   type = string
-# }
