@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-* AWS Terraform Provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
+- AWS Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
 
 ## Order To Deploy
 
