@@ -3,6 +3,7 @@
 ## Prerequisites
 
 - AWS Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
+- Subscribe to Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q
 
 ## Order To Deploy
 
