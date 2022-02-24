@@ -1,5 +1,6 @@
 resource "aws_ebs_volume" "copilot_vol1" {
-  availability_zone = module.aviatrix-controller-build.availability_zone
+  # availability_zone = module.aviatrix-controller-build.availability_zone
+  availability_zone = module.copilot_build_aws.availability_zone
   size              = 8
   tags = {
     Name = "Aviatrix CoPilot Volume 1"
@@ -7,7 +8,7 @@ resource "aws_ebs_volume" "copilot_vol1" {
 }
 
 module "copilot_build_aws" {
-  source  = "github.com/AviatrixSystems/terraform-modules-copilot.git//copilot_build_aws"
+  source  = "./modules/copilot_build_aws"
   keypair = "copilot_kp"
 
   allowed_cidrs = {
