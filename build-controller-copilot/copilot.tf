@@ -7,12 +7,13 @@ resource "aws_ebs_volume" "copilot_vol1" {
 }
 
 module "copilot_build_aws" {
-  source           = "./modules/copilot_build_aws"
-  copilot_name     = var.copilot_name
-  keypair          = "copilot_kp"
-  use_existing_vpc = true
-  vpc_id           = aws_vpc.vpc.id
-  subnet_id        = aws_subnet.subnet.id
+  source               = "./modules/copilot_build_aws"
+  copilot_name         = var.copilot_name
+  use_existing_keypair = true
+  keypair              = var.keypair
+  use_existing_vpc     = true
+  vpc_id               = aws_vpc.vpc.id
+  subnet_id            = aws_subnet.subnet.id
 
   allowed_cidrs = {
     "tcp_cidrs" = {
@@ -38,4 +39,7 @@ module "copilot_build_aws" {
       volume_id   = aws_ebs_volume.copilot_vol1.id
     }
   }
+  depends_on = [
+    aws_key_pair.keypair
+  ]
 }

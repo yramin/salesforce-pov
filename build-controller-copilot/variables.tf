@@ -33,3 +33,7 @@ variable "controller_name" {
 variable "copilot_name" {
   type = string
 }
+
+variable "keypair" {
+  type = string
+}

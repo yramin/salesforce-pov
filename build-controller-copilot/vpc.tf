@@ -35,3 +35,13 @@ resource "aws_route_table_association" "rtb_association" {
   subnet_id      = aws_subnet.subnet.id
   route_table_id = aws_route_table.rtb.id
 }
+
+resource "tls_private_key" "keypair_material" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "keypair" {
+  key_name   = var.keypair
+  public_key = tls_private_key.keypair_material.public_key_openssh
+}

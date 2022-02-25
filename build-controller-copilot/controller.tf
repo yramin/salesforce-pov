@@ -13,11 +13,14 @@ module "aviatrix-controller-build" {
   vpc                    = aws_vpc.vpc.id
   subnet                 = aws_subnet.subnet.id
   controller_name        = var.controller_name
-  keypair                = "us-west-1"
+  keypair                = var.keypair
   ec2role                = var.ec2_role_name
   incoming_ssl_cidr      = var.incoming_ssl_cidr
   type                   = "MeteredPlatinumCopilot"
   termination_protection = "false" # Set to true for production
+  depends_on = [
+    aws_key_pair.keypair
+  ]
 }
 
 module "aviatrix-controller-initialize" {
