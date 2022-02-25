@@ -18,6 +18,10 @@ variable "incoming_ssl_cidr" {
   type = list(any)
 }
 
+variable "create_iam_roles" {
+  type = bool
+}
+
 variable "ec2_role_name" {
   type = string
 }
