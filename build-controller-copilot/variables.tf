@@ -17,3 +17,11 @@ variable "aws_account_id" {
 variable "incoming_ssl_cidr" {
   type = list(any)
 }
+
+variable "ec2_role_name" {
+  type = string
+}
+
+variable "app_role_name" {
+  type = string
+}

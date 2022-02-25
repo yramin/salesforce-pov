@@ -15,11 +15,13 @@
 
 - Update values in `build-controller-copilot/terraform.tfvars`.
 
-- If IAM roles already exist in the AWS account comment out the following lines in `build-controller-copilot/controller.tf`. If the IAM roles do not exist you can leave these lines uncommented.
+- If Aviatrix IAM roles already exist in the AWS account comment out the following lines in `build-controller-copilot/controller.tf`. If the Aviatrix IAM roles do not exist you can leave these lines uncommented.
   ```
-  module "aviatrix-iam-roles" {
-    source = "github.com/AviatrixSystems/terraform-modules.git//aviatrix-controller-iam-roles?ref=terraform_0.14"
-  }
+ module "aviatrix-iam-roles" {
+  source        = "github.com/AviatrixSystems/terraform-modules.git//aviatrix-controller-iam-roles?ref=terraform_0.14"
+  ec2_role_name = var.ec2_role_name
+  app_role_name = var.app_role_name
+}
   ```
 
 ## 2. configure-controller
