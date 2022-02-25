@@ -1,5 +1,4 @@
 resource "aws_ebs_volume" "copilot_vol1" {
-  # availability_zone = module.aviatrix-controller-build.availability_zone
   availability_zone = module.copilot_build_aws.availability_zone
   size              = 8
   tags = {
