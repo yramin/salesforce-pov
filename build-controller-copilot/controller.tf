@@ -12,6 +12,7 @@ module "aviatrix-controller-build" {
   source                 = "github.com/AviatrixSystems/terraform-modules.git//aviatrix-controller-build?ref=terraform_0.14"
   vpc                    = aws_vpc.vpc.id
   subnet                 = aws_subnet.subnet.id
+  controller_name        = var.controller_name
   keypair                = "us-west-1"
   ec2role                = var.ec2_role_name
   incoming_ssl_cidr      = var.incoming_ssl_cidr

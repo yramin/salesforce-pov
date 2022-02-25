@@ -8,6 +8,7 @@ resource "aws_ebs_volume" "copilot_vol1" {
 
 module "copilot_build_aws" {
   source           = "./modules/copilot_build_aws"
+  copilot_name     = var.copilot_name
   keypair          = "copilot_kp"
   use_existing_vpc = true
   vpc_id           = aws_vpc.vpc.id

@@ -5,3 +5,5 @@ aws_account_id      = "111111111111"
 incoming_ssl_cidr   = ["0.0.0.0/0"]
 ec2_role_name       = "aviatrix-role-ec2"
 app_role_name       = "aviatrix-role-app"
+controller_name     = "SalesforceAviatrixController"
+copilot_name        = "SalesforceAviatrixCopilot"

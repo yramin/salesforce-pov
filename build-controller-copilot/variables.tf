@@ -25,3 +25,11 @@ variable "ec2_role_name" {
 variable "app_role_name" {
   type = string
 }
+
+variable "controller_name" {
+  type = string
+}
+
+variable "copilot_name" {
+  type = string
+}
