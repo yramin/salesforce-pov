@@ -9,3 +9,4 @@ gcloud_project_credentials_filepath = "/Users/ronaldlee/Desktop/gcp-rlee-01.json
 aviatrix_controller_ip              = "54.176.103.242"
 aviatrix_username                   = "admin"
 aviatrix_password                   = "Aviatrix12345#"
+aviatrix_copilot_ip                 = "184.169.217.65"

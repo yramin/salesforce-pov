@@ -79,6 +79,10 @@ resource "aws_cloudformation_stack" "controller_ha" {
   ]
 }
 
+resource "aviatrix_copilot_association" "copilot_association" {
+  copilot_address = var.aviatrix_copilot_ip
+}
+
 module "transit-peering" {
   source  = "terraform-aviatrix-modules/mc-transit-peering/aviatrix"
   version = "1.0.5"

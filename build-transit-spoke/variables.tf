@@ -41,3 +41,7 @@ variable "aviatrix_username" {
 variable "aviatrix_password" {
   type = string
 }
+
+variable "aviatrix_copilot_ip" {
+  type = string
+}
