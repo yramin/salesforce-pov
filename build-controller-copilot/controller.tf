@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "us-west-1"
-}
-
 module "aviatrix-iam-roles" {
   count         = var.create_iam_roles ? 1 : 0
   source        = "github.com/AviatrixSystems/terraform-modules.git//aviatrix-controller-iam-roles?ref=terraform_0.14"
