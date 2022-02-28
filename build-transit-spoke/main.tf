@@ -40,6 +40,43 @@ resource "aviatrix_controller_config" "backup_config" {
   backup_bucket_name   = aws_s3_bucket.backups_s3.id
 }
 
+data "aws_vpc" "vpc" {
+  filter {
+    name   = "tag:Name"
+    values = ["sharedsvcsdr12"]
+  }
+}
+
+data "aws_subnet" "subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["sharedsvcsdr12-subnet"]
+  }
+}
+
+data "aws_subnet" "subnet-ha" {
+  filter {
+    name   = "tag:Name"
+    values = ["sharedsvcsdr12-subnet-ha"]
+  }
+}
+
+resource "aws_cloudformation_stack" "controller_ha" {
+  name         = "AviatrixControllerHA"
+  capabilities = ["CAPABILITY_NAMED_IAM"]
+  template_url = "https://s3-us-west-2.amazonaws.com/aviatrix-cloudformation-templates/aviatrix-aws-existing-controller-ha.json"
+  parameters = {
+    VPCParam                  = data.aws_vpc.vpc.id
+    SubnetParam               = join(",", [data.aws_subnet.subnet.id, data.aws_subnet.subnet-ha.id])
+    AviatrixTagParam          = var.controller_name
+    S3BucketBackupParam       = aws_s3_bucket.backups_s3.id
+    NotifEmailParam           = var.admin_email
+    PrivateAccess             = "False"
+    CustomAviatrixAppRoleName = var.app_role_name
+    CustomAviatrixEC2RoleName = var.ec2_role_name
+  }
+}
+
 module "transit-peering" {
   source  = "terraform-aviatrix-modules/mc-transit-peering/aviatrix"
   version = "1.0.5"

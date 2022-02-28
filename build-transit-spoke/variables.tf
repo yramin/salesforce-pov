@@ -1,4 +1,20 @@
+variable "admin_email" {
+  type = string
+}
+
+variable "controller_name" {
+  type = string
+}
+
 variable "aws_account_name" {
+  type = string
+}
+
+variable "ec2_role_name" {
+  type = string
+}
+
+variable "app_role_name" {
   type = string
 }
 

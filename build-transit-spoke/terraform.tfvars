@@ -1,4 +1,8 @@
+admin_email                         = "rlee@aviatrix.com"
+controller_name                     = "SalesforceAviatrixController"
 aws_account_name                    = "Salesforce-AWS"
+ec2_role_name                       = "aviatrix-role-ec2"
+app_role_name                       = "aviatrix-role-app"
 gcp_account_name                    = "Salesforce-GCP"
 gcloud_project_id                   = "rlee-01"
 gcloud_project_credentials_filepath = "/Users/ronaldlee/Desktop/gcp-rlee-01.json"
