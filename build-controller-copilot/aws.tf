@@ -9,11 +9,25 @@ resource "aws_vpc" "vpc" {
   }
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 resource "aws_subnet" "subnet" {
-  vpc_id     = aws_vpc.vpc.id
-  cidr_block = "10.12.0.0/24"
+  vpc_id               = aws_vpc.vpc.id
+  cidr_block           = "10.12.0.0/24"
+  availability_zone_id = data.aws_availability_zones.available.zone_ids[0]
   tags = {
     Name = "sharedsvcsdr12-subnet"
+  }
+}
+
+resource "aws_subnet" "subnet_ha" {
+  vpc_id               = aws_vpc.vpc.id
+  cidr_block           = "10.12.1.0/24"
+  availability_zone_id = data.aws_availability_zones.available.zone_ids[1]
+  tags = {
+    Name = "sharedsvcsdr12-subnet-ha"
   }
 }
 
@@ -37,6 +51,11 @@ resource "aws_route_table" "rtb" {
 
 resource "aws_route_table_association" "rtb_association" {
   subnet_id      = aws_subnet.subnet.id
+  route_table_id = aws_route_table.rtb.id
+}
+
+resource "aws_route_table_association" "rtb_association_ha" {
+  subnet_id      = aws_subnet.subnet_ha.id
   route_table_id = aws_route_table.rtb.id
 }
 
