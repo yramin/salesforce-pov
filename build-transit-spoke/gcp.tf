@@ -1,3 +1,10 @@
+resource "aviatrix_account" "gcp" {
+  account_name                        = var.gcp_account_name
+  cloud_type                          = 4
+  gcloud_project_id                   = var.gcloud_project_id
+  gcloud_project_credentials_filepath = var.gcloud_project_credentials_filepath
+}
+
 # us-west1 
 
 module "gcptgw16" {
@@ -7,7 +14,7 @@ module "gcptgw16" {
   name    = "gcptgw16"
   region  = "us-west1"
   cidr    = "10.16.0.0/16"
-  account = var.gcp_account_name
+  account = aviatrix_account.gcp.account_name
 }
 
 module "prod7" {
@@ -17,7 +24,7 @@ module "prod7" {
   name       = "prod7"
   region     = "us-west1"
   cidr       = "10.7.0.0/16"
-  account    = var.gcp_account_name
+  account    = aviatrix_account.gcp.account_name
   transit_gw = module.gcptgw16.transit_gateway.gw_name
 }
 
@@ -28,7 +35,7 @@ module "dev6" {
   name       = "dev6"
   region     = "us-west1"
   cidr       = "10.6.0.0/16"
-  account    = var.gcp_account_name
+  account    = aviatrix_account.gcp.account_name
   transit_gw = module.gcptgw16.transit_gateway.gw_name
 }
 
@@ -41,7 +48,7 @@ module "gcptgw17" {
   name    = "gcptgw17"
   region  = "us-east1"
   cidr    = "10.17.0.0/16"
-  account = var.gcp_account_name
+  account = aviatrix_account.gcp.account_name
 }
 
 module "prod9" {
@@ -51,7 +58,7 @@ module "prod9" {
   name       = "prod9"
   region     = "us-east1"
   cidr       = "10.9.0.0/16"
-  account    = var.gcp_account_name
+  account    = aviatrix_account.gcp.account_name
   transit_gw = module.gcptgw17.transit_gateway.gw_name
 }
 
@@ -62,6 +69,6 @@ module "dev8" {
   name       = "dev8"
   region     = "us-east1"
   cidr       = "10.8.0.0/16"
-  account    = var.gcp_account_name
+  account    = aviatrix_account.gcp.account_name
   transit_gw = module.gcptgw17.transit_gateway.gw_name
 }

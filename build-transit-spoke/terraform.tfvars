@@ -1,5 +1,7 @@
 aws_account_name       = "Salesforce-AWS"
 gcp_account_name       = "Salesforce-GCP"
-aviatrix_controller_ip = "54.151.96.222"
+gcloud_project_id                   = "rlee-01"
+gcloud_project_credentials_filepath = "/Users/ronaldlee/Desktop/gcp-rlee-01.json"
+aviatrix_controller_ip = "54.176.103.242"
 aviatrix_username      = "admin"
 aviatrix_password      = "Aviatrix12345#"
