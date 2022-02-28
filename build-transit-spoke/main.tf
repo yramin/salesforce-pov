@@ -9,6 +9,13 @@ provider "aws" {
   region = "us-west-1"
 }
 
+resource "aviatrix_account" "gcp" {
+  account_name                        = var.gcp_account_name
+  cloud_type                          = 4
+  gcloud_project_id                   = var.gcloud_project_id
+  gcloud_project_credentials_filepath = var.gcloud_project_credentials_filepath
+}
+
 resource "aws_s3_bucket" "backups_s3" {
   bucket_prefix = "aviatrix-backups"
   force_destroy = true

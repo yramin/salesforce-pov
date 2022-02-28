@@ -1,10 +1,3 @@
-resource "aviatrix_account" "gcp" {
-  account_name                        = var.gcp_account_name
-  cloud_type                          = 4
-  gcloud_project_id                   = var.gcloud_project_id
-  gcloud_project_credentials_filepath = var.gcloud_project_credentials_filepath
-}
-
 # us-west1 
 
 module "gcptgw16" {
