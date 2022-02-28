@@ -10,6 +10,10 @@ variable "aviatrix_password" {
   type = string
 }
 
+variable "access_account_name" {
+  type = string
+}
+
 variable "gcp_account_name" {
   type = string
 }
