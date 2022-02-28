@@ -25,8 +25,7 @@ resource "aws_s3_bucket" "backups_s3" {
 }
 
 resource "aws_s3_bucket_public_access_block" "example" {
-  bucket = aws_s3_bucket.backups_s3.id
-
+  bucket                  = aws_s3_bucket.backups_s3.id
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -75,6 +74,9 @@ resource "aws_cloudformation_stack" "controller_ha" {
     CustomAviatrixAppRoleName = var.app_role_name
     CustomAviatrixEC2RoleName = var.ec2_role_name
   }
+  depends_on = [
+    aviatrix_controller_config.backup_config
+  ]
 }
 
 module "transit-peering" {
