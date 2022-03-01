@@ -3,7 +3,11 @@
 ## Prerequisites
 
 - AWS Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
-- Subscribe to Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q
+- Increase VPC and Elastic IP quotas in us-west-1 and us-east-1.
+- Subscribe to the following AMIs:
+  - Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q
+  - Aviatrix CoPilot: https://aws.amazon.com/marketplace/pp?sku=bjl4xsl3kdlaukmyctcb7np9s
+  - Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1: https://aws.amazon.com/marketplace/pp?sku=e9yfvyj3uag5uo5j2hjikv74n
 
 ## Order To Deploy
 
@@ -18,6 +22,7 @@
 
 - Update values in `build-transit-spoke/terraform.tfvars`.
 - For information on how to create the .json file for GCP, see https://docs.aviatrix.com/HowTos/CreateGCloudAccount.html.
+- For information on Aviatrix Controller HA, see https://docs.aviatrix.com/HowTos/controller_ha.html.
 
 ## terraform destroy
 
