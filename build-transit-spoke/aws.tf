@@ -1,11 +1,11 @@
-# us-west-1
+# us-west-2
 
 module "awstgw13" {
   source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version = "1.1.0"
   cloud   = "AWS"
   name    = "awstgw13"
-  region  = "us-west-1"
+  region  = "us-west-2"
   cidr    = "10.13.0.0/16"
   account = var.aws_account_name
 }
@@ -15,7 +15,7 @@ module "prod1" {
   version    = "1.1.0"
   cloud      = "AWS"
   name       = "prod1"
-  region     = "us-west-1"
+  region     = "us-west-2"
   cidr       = "10.1.0.0/16"
   account    = var.aws_account_name
   transit_gw = module.awstgw13.transit_gateway.gw_name
@@ -26,7 +26,7 @@ resource "aviatrix_gateway" "egress" {
   account_name = var.aws_account_name
   gw_name      = "egress"
   vpc_id       = module.prod1.vpc.vpc_id
-  vpc_reg      = "us-west-1"
+  vpc_reg      = "us-west-2"
   gw_size      = "t2.micro"
   subnet       = module.prod1.vpc.public_subnets[0].cidr
 }
@@ -36,7 +36,7 @@ module "dev2" {
   version    = "1.1.0"
   cloud      = "AWS"
   name       = "dev2"
-  region     = "us-west-1"
+  region     = "us-west-2"
   cidr       = "10.2.0.0/16"
   account    = var.aws_account_name
   transit_gw = module.awstgw13.transit_gateway.gw_name
