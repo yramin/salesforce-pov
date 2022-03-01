@@ -1,0 +1,2 @@
+ios-config-1="hostname ${onprem_csr_hostname}"
+ios-config-1="username ${onprem_csr_username} privilege 15 password 0 ${onprem_csr_password}"
