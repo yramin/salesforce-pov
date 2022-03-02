@@ -122,6 +122,8 @@ resource "aws_instance" "onprem_csr" {
       awstgw13_ha_ip       = module.awstgw13.transit_gateway.ha_eip
       awstgw14_ip          = module.awstgw14.transit_gateway.eip
       awstgw14_ha_ip       = module.awstgw14.transit_gateway.ha_eip
+      awstgw15_ip          = module.awstgw15.transit_gateway.eip
+      awstgw15_ha_ip       = module.awstgw15.transit_gateway.ha_eip
     }
   )
   tags = {
