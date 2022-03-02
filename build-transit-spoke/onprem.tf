@@ -122,3 +122,53 @@ resource "aws_instance" "onprem_csr" {
     Name = "onprem-csr"
   }
 }
+
+resource "aviatrix_transit_external_device_conn" "awstgw13_onprem" {
+  vpc_id            = module.awstgw13.vpc.vpc_id
+  connection_name   = "awstgw13-onprem"
+  gw_name           = module.awstgw13.transit_gateway.gw_name
+  connection_type   = "bgp"
+  bgp_local_as_num  = "64773"
+  bgp_remote_as_num = "64778"
+  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+}
+
+resource "aviatrix_transit_external_device_conn" "awstgw14_onprem" {
+  vpc_id            = module.awstgw14.vpc.vpc_id
+  connection_name   = "awstgw14-onprem"
+  gw_name           = module.awstgw14.transit_gateway.gw_name
+  connection_type   = "bgp"
+  bgp_local_as_num  = "64774"
+  bgp_remote_as_num = "64778"
+  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+}
+
+resource "aviatrix_transit_external_device_conn" "awstgw15_onprem" {
+  vpc_id            = module.awstgw15.vpc.vpc_id
+  connection_name   = "awstgw15-onprem"
+  gw_name           = module.awstgw15.transit_gateway.gw_name
+  connection_type   = "bgp"
+  bgp_local_as_num  = "64775"
+  bgp_remote_as_num = "64778"
+  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+}
+
+resource "aviatrix_transit_external_device_conn" "gcptgw16_onprem" {
+  vpc_id            = join("", [module.gcptgw16.vpc.vpc_id, "~-~", var.gcloud_project_id])
+  connection_name   = "gcptgw16-onprem"
+  gw_name           = module.gcptgw16.transit_gateway.gw_name
+  connection_type   = "bgp"
+  bgp_local_as_num  = "64776"
+  bgp_remote_as_num = "64778"
+  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+}
+
+resource "aviatrix_transit_external_device_conn" "gcptgw17_onprem" {
+  vpc_id            = join("", [module.gcptgw17.vpc.vpc_id, "~-~", var.gcloud_project_id])
+  connection_name   = "gcptgw17-onprem"
+  gw_name           = module.gcptgw17.transit_gateway.gw_name
+  connection_type   = "bgp"
+  bgp_local_as_num  = "64777"
+  bgp_remote_as_num = "64778"
+  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+}
