@@ -134,6 +134,7 @@ resource "aviatrix_transit_external_device_conn" "awstgw13_onprem" {
   local_tunnel_cidr        = "169.254.13.2/30,169.254.13.6/30"
   remote_tunnel_cidr       = "169.254.13.1/30,169.254.13.5/30"
   phase1_remote_identifier = [aws_network_interface.onprem_nic.private_ip]
+  pre_shared_key           = var.onprem_csr_password
 }
 
 resource "aviatrix_transit_external_device_conn" "awstgw14_onprem" {
@@ -147,6 +148,7 @@ resource "aviatrix_transit_external_device_conn" "awstgw14_onprem" {
   local_tunnel_cidr        = "169.254.14.2/30,169.254.14.6/30"
   remote_tunnel_cidr       = "169.254.14.1/30,169.254.14.5/30"
   phase1_remote_identifier = [aws_network_interface.onprem_nic.private_ip]
+  pre_shared_key           = var.onprem_csr_password
 }
 
 resource "aviatrix_transit_external_device_conn" "awstgw15_onprem" {
@@ -160,6 +162,7 @@ resource "aviatrix_transit_external_device_conn" "awstgw15_onprem" {
   local_tunnel_cidr        = "169.254.15.2/30,169.254.15.6/30"
   remote_tunnel_cidr       = "169.254.15.1/30,169.254.15.5/30"
   phase1_remote_identifier = [aws_network_interface.onprem_nic.private_ip]
+  pre_shared_key           = var.onprem_csr_password
 }
 
 resource "aviatrix_transit_external_device_conn" "gcptgw16_onprem" {
@@ -173,6 +176,7 @@ resource "aviatrix_transit_external_device_conn" "gcptgw16_onprem" {
   local_tunnel_cidr        = "169.254.16.2/30,169.254.16.6/30"
   remote_tunnel_cidr       = "169.254.16.1/30,169.254.16.5/30"
   phase1_remote_identifier = [aws_network_interface.onprem_nic.private_ip]
+  pre_shared_key           = var.onprem_csr_password
 }
 
 resource "aviatrix_transit_external_device_conn" "gcptgw17_onprem" {
@@ -186,4 +190,5 @@ resource "aviatrix_transit_external_device_conn" "gcptgw17_onprem" {
   local_tunnel_cidr        = "169.254.17.2/30,169.254.17.6/30"
   remote_tunnel_cidr       = "169.254.17.1/30,169.254.17.5/30"
   phase1_remote_identifier = [aws_network_interface.onprem_nic.private_ip]
+  pre_shared_key           = var.onprem_csr_password
 }
