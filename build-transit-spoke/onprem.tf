@@ -116,6 +116,10 @@ resource "aws_instance" "onprem_csr" {
       onprem_csr_hostname = "onpremcsr"
       onprem_csr_username = var.onprem_csr_username
       onprem_csr_password = var.onprem_csr_password
+      onprem_csr_public_ip = aws_eip.onprem_eip.public_ip
+      pre_shared_key = var.onprem_csr_password
+      awstgw13_ip = module.awstgw13.transit_gateway.eip
+      awstgw13_ha_ip = module.awstgw13.transit_gateway.ha_eip
     }
   )
   tags = {
