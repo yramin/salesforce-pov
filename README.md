@@ -8,6 +8,7 @@
   - Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q
   - Aviatrix CoPilot: https://aws.amazon.com/marketplace/pp?sku=bjl4xsl3kdlaukmyctcb7np9s
   - Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1: https://aws.amazon.com/marketplace/pp?sku=e9yfvyj3uag5uo5j2hjikv74n
+  - Cisco Cloud Services Router (CSR) 1000V: https://aws.amazon.com/marketplace/pp?sku=5tiyrfb5tasxk9gmnab39b843
 
 ## Order To Deploy
 
