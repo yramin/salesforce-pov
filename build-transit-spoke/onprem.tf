@@ -124,51 +124,61 @@ resource "aws_instance" "onprem_csr" {
 }
 
 resource "aviatrix_transit_external_device_conn" "awstgw13_onprem" {
-  vpc_id            = module.awstgw13.vpc.vpc_id
-  connection_name   = "awstgw13-onprem"
-  gw_name           = module.awstgw13.transit_gateway.gw_name
-  connection_type   = "bgp"
-  bgp_local_as_num  = "64773"
-  bgp_remote_as_num = "64778"
-  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+  vpc_id             = module.awstgw13.vpc.vpc_id
+  connection_name    = "awstgw13-onprem"
+  gw_name            = module.awstgw13.transit_gateway.gw_name
+  connection_type    = "bgp"
+  bgp_local_as_num   = "64773"
+  bgp_remote_as_num  = "64778"
+  remote_gateway_ip  = aws_eip.onprem_eip.public_ip
+  local_tunnel_cidr  = "169.254.13.2/30,169.254.13.6/30"
+  remote_tunnel_cidr = "169.254.13.1/30,169.254.13.5/30"
 }
 
 resource "aviatrix_transit_external_device_conn" "awstgw14_onprem" {
-  vpc_id            = module.awstgw14.vpc.vpc_id
-  connection_name   = "awstgw14-onprem"
-  gw_name           = module.awstgw14.transit_gateway.gw_name
-  connection_type   = "bgp"
-  bgp_local_as_num  = "64774"
-  bgp_remote_as_num = "64778"
-  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+  vpc_id             = module.awstgw14.vpc.vpc_id
+  connection_name    = "awstgw14-onprem"
+  gw_name            = module.awstgw14.transit_gateway.gw_name
+  connection_type    = "bgp"
+  bgp_local_as_num   = "64774"
+  bgp_remote_as_num  = "64778"
+  remote_gateway_ip  = aws_eip.onprem_eip.public_ip
+  local_tunnel_cidr  = "169.254.14.2/30,169.254.14.6/30"
+  remote_tunnel_cidr = "169.254.14.1/30,169.254.14.5/30"
 }
 
 resource "aviatrix_transit_external_device_conn" "awstgw15_onprem" {
-  vpc_id            = module.awstgw15.vpc.vpc_id
-  connection_name   = "awstgw15-onprem"
-  gw_name           = module.awstgw15.transit_gateway.gw_name
-  connection_type   = "bgp"
-  bgp_local_as_num  = "64775"
-  bgp_remote_as_num = "64778"
-  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+  vpc_id             = module.awstgw15.vpc.vpc_id
+  connection_name    = "awstgw15-onprem"
+  gw_name            = module.awstgw15.transit_gateway.gw_name
+  connection_type    = "bgp"
+  bgp_local_as_num   = "64775"
+  bgp_remote_as_num  = "64778"
+  remote_gateway_ip  = aws_eip.onprem_eip.public_ip
+  local_tunnel_cidr  = "169.254.15.2/30,169.254.15.6/30"
+  remote_tunnel_cidr = "169.254.15.1/30,169.254.15.5/30"
 }
 
 resource "aviatrix_transit_external_device_conn" "gcptgw16_onprem" {
-  vpc_id            = join("", [module.gcptgw16.vpc.vpc_id, "~-~", var.gcloud_project_id])
-  connection_name   = "gcptgw16-onprem"
-  gw_name           = module.gcptgw16.transit_gateway.gw_name
-  connection_type   = "bgp"
-  bgp_local_as_num  = "64776"
-  bgp_remote_as_num = "64778"
-  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+  vpc_id             = join("", [module.gcptgw16.vpc.vpc_id, "~-~", var.gcloud_project_id])
+  connection_name    = "gcptgw16-onprem"
+  gw_name            = module.gcptgw16.transit_gateway.gw_name
+  connection_type    = "bgp"
+  bgp_local_as_num   = "64776"
+  bgp_remote_as_num  = "64778"
+  remote_gateway_ip  = aws_eip.onprem_eip.public_ip
+  local_tunnel_cidr  = "169.254.16.2/30,169.254.16.6/30"
+  remote_tunnel_cidr = "169.254.16.1/30,169.254.16.5/30"
 }
 
 resource "aviatrix_transit_external_device_conn" "gcptgw17_onprem" {
-  vpc_id            = join("", [module.gcptgw17.vpc.vpc_id, "~-~", var.gcloud_project_id])
-  connection_name   = "gcptgw17-onprem"
-  gw_name           = module.gcptgw17.transit_gateway.gw_name
-  connection_type   = "bgp"
-  bgp_local_as_num  = "64777"
-  bgp_remote_as_num = "64778"
-  remote_gateway_ip = aws_eip.onprem_eip.public_ip
+  vpc_id             = join("", [module.gcptgw17.vpc.vpc_id, "~-~", var.gcloud_project_id])
+  connection_name    = "gcptgw17-onprem"
+  gw_name            = module.gcptgw17.transit_gateway.gw_name
+  connection_type    = "bgp"
+  bgp_local_as_num   = "64777"
+  bgp_remote_as_num  = "64778"
+  remote_gateway_ip  = aws_eip.onprem_eip.public_ip
+  local_tunnel_cidr  = "169.254.17.2/30,169.254.17.6/30"
+  remote_tunnel_cidr = "169.254.17.1/30,169.254.17.5/30"
 }
