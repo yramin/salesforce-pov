@@ -25,3 +25,59 @@ resource "aws_s3_object" "initcfgtxt" {
   key    = "init-cfg.txt"
   source = "pan/init-cfg.txt"
 }
+
+resource "aws_iam_policy" "pan_bootstrap_policy" {
+  name = "bootstrap-VM-S3-policy"
+  policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Action" : [
+            "s3:ListBucket"
+          ],
+          "Resource" : [
+            "arn:aws:s3:::*"
+          ]
+        },
+        {
+          "Effect" : "Allow",
+          "Action" : [
+            "s3:GetObject"
+          ],
+          "Resource" : [
+            "arn:aws:s3:::*"
+          ]
+        }
+      ]
+    }
+  )
+}
+
+resource "aws_iam_role" "pan_bootstrap_role" {
+  name = "bootstrap-VM-S3-role"
+  assume_role_policy = jsonencode(
+    {
+      "Version" : "2012-10-17",
+      "Statement" : [
+        {
+          "Effect" : "Allow",
+          "Action" : [
+            "sts:AssumeRole"
+          ],
+          "Principal" : {
+            "Service" : [
+              "ec2.amazonaws.com"
+            ]
+          }
+        }
+      ]
+    }
+  )
+}
+
+resource "aws_iam_role_policy_attachment" "pan_bootstrap_role_policy_attachment" {
+  role       = aws_iam_role.pan_bootstrap_role.name
+  policy_arn = aws_iam_policy.pan_bootstrap_policy.arn
+}
