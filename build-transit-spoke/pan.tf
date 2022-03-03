@@ -26,6 +26,21 @@ resource "aws_s3_object" "initcfgtxt" {
   source = "pan/init-cfg.txt"
 }
 
+resource "aws_s3_object" "content" {
+  bucket = aws_s3_bucket.pan_bootstrap_s3.id
+  key    = "content/"
+}
+
+resource "aws_s3_object" "license" {
+  bucket = aws_s3_bucket.pan_bootstrap_s3.id
+  key    = "license/"
+}
+
+resource "aws_s3_object" "software" {
+  bucket = aws_s3_bucket.pan_bootstrap_s3.id
+  key    = "software/"
+}
+
 resource "aws_iam_policy" "pan_bootstrap_policy" {
   name = "bootstrap-VM-S3-policy"
   policy = jsonencode(
