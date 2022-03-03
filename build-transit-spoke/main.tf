@@ -24,7 +24,7 @@ resource "aws_s3_bucket" "backups_s3" {
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "example" {
+resource "aws_s3_bucket_public_access_block" "backups_block" {
   bucket                  = aws_s3_bucket.backups_s3.id
   block_public_acls       = true
   block_public_policy     = true
