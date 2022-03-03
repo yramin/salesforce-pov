@@ -118,14 +118,58 @@ resource "aws_instance" "onprem_csr" {
       onprem_csr_password  = var.onprem_csr_password
       onprem_csr_public_ip = aws_eip.onprem_eip.public_ip
       pre_shared_key       = var.onprem_csr_password
-      awstgw13_ip          = module.awstgw13.transit_gateway.eip
-      awstgw13_ha_ip       = module.awstgw13.transit_gateway.ha_eip
-      awstgw14_ip          = module.awstgw14.transit_gateway.eip
-      awstgw14_ha_ip       = module.awstgw14.transit_gateway.ha_eip
-      awstgw15_ip          = module.awstgw15.transit_gateway.eip
-      awstgw15_ha_ip       = module.awstgw15.transit_gateway.ha_eip
-      gcptgw16_ip          = module.gcptgw16.transit_gateway.eip
-      gcptgw16_ha_ip       = module.gcptgw16.transit_gateway.ha_eip
+      transits = [
+        {
+          ip                   = module.awstgw13.transit_gateway.eip
+          ha_ip                = module.awstgw13.transit_gateway.ha_eip
+          index_number         = "13"
+          aviatrix_bgp_asn     = "64773"
+          onprem_tunnel_ip_1   = "169.254.13.1"
+          onprem_tunnel_ip_2   = "169.254.13.5"
+          aviatrix_tunnel_ip_1 = "169.254.13.2"
+          aviatrix_tunnel_ip_2 = "169.254.13.6"
+        },
+        {
+          ip                   = module.awstgw14.transit_gateway.eip
+          ha_ip                = module.awstgw14.transit_gateway.ha_eip
+          index_number         = "14"
+          aviatrix_bgp_asn     = "64774"
+          onprem_tunnel_ip_1   = "169.254.14.1"
+          onprem_tunnel_ip_2   = "169.254.14.5"
+          aviatrix_tunnel_ip_1 = "169.254.14.2"
+          aviatrix_tunnel_ip_2 = "169.254.14.6"
+        },
+        {
+          ip                   = module.awstgw15.transit_gateway.eip
+          ha_ip                = module.awstgw15.transit_gateway.ha_eip
+          index_number         = "15"
+          aviatrix_bgp_asn     = "64775"
+          onprem_tunnel_ip_1   = "169.254.15.1"
+          onprem_tunnel_ip_2   = "169.254.15.5"
+          aviatrix_tunnel_ip_1 = "169.254.15.2"
+          aviatrix_tunnel_ip_2 = "169.254.15.6"
+        },
+        {
+          ip                   = module.gcptgw16.transit_gateway.eip
+          ha_ip                = module.gcptgw16.transit_gateway.ha_eip
+          index_number         = "16"
+          aviatrix_bgp_asn     = "64776"
+          onprem_tunnel_ip_1   = "169.254.16.1"
+          onprem_tunnel_ip_2   = "169.254.16.5"
+          aviatrix_tunnel_ip_1 = "169.254.16.2"
+          aviatrix_tunnel_ip_2 = "169.254.16.6"
+        },
+        # {
+        #   ip                   = module.gcptgw17.transit_gateway.eip
+        #   ha_ip                = module.gcptgw17.transit_gateway.ha_eip
+        #   index_number         = "17"
+        #   aviatrix_bgp_asn     = "64777"
+        #   onprem_tunnel_ip_1   = "169.254.17.1"
+        #   onprem_tunnel_ip_2   = "169.254.17.5"
+        #   aviatrix_tunnel_ip_1 = "169.254.17.2"
+        #   aviatrix_tunnel_ip_2 = "169.254.17.6"
+        # }
+      ]
     }
   )
   tags = {
