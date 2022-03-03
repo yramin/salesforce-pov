@@ -16,13 +16,13 @@ resource "aws_s3_bucket_public_access_block" "pan_block" {
 
 resource "aws_s3_object" "bootstrapxml" {
   bucket = aws_s3_bucket.pan_bootstrap_s3.id
-  key    = "bootstrap.xml"
+  key    = "config/bootstrap.xml"
   source = "pan/bootstrap.xml"
 }
 
 resource "aws_s3_object" "initcfgtxt" {
   bucket = aws_s3_bucket.pan_bootstrap_s3.id
-  key    = "init-cfg.txt"
+  key    = "config/init-cfg.txt"
   source = "pan/init-cfg.txt"
 }
 
