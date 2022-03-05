@@ -1,27 +1,29 @@
 <?xml version="1.0"?>
-<config version="9.0.0" urldb="paloaltonetworks">
+<config version="10.1.0" urldb="paloaltonetworks" detail-version="10.1.3">
   <mgt-config>
     <users>
-      <entry name="https_interface_admin_username">
-        <phash>https_interface_admin_password_hash/</phash>
+      <entry name="admin">
+        <phash>$5$yuhmshqh$xP3SX0sgcs/0qA0PpTnLXtyFiTac39Xkfa2wg.PZBA8</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
           </role-based>
         </permissions>
-        <public-key>https_interface_public_key</public-key>
+        <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDYnNaaytwYnBjZ2tQOGF0ai82TjVsNngvYjJtSDdNaFJGcndjVGpVQk5qcUx3V0JnZGNIc1M5TEJUWnVDS1ZnSnZDYXlhL2lDUnF0QmgvZjI1dW1VMGkvY0FiQ1hzcVVwWW9RNFhtVmxranh2T3dpMWY0T1BrbzRoVmsrT05YVDhraUdZT3hnVmo3bGtpcjhPNlhIdnY5YW96SzRycFhUaDl2RG5yL0pvenZxWUxHZVR3b0cvdzZWcGMrTHFmc2FkYlpyQU5hSkc4bVhZVXdNL0hPRm5kc3BSaFN2c0FKQUIxNFZyTUNmSnJSUTFoOWVndklFdXByL2JIcTJaY1pITlJEVmpqTXh4cXkxWGV6RXBwRklXcWZOOUxXWVA3MFRKLzdPNWVKQ25aUlNRaDkrelQ0L08ya1A4aENySjZMQmZzdTl4SnZFNm4reVB1Ly9zdmFyVGYgdnBjLTA0OTc3YjU5MzE2MGY4YTYzX2F3c3RndzE0LWF6MS1mdzE=</public-key>
       </entry>
-      <entry name="api_admin_username">
+      <entry name="admin-api">
         <permissions>
           <role-based>
-            <custom>
-              <profile>apiadmin</profile>
-            </custom>
+            <superuser>yes</superuser>
           </role-based>
         </permissions>
-        <phash>api_admin_password_hash</phash>
+        <phash>$5$qtvpvmnc$.7n/DT88Sa52zVhi6lc5UAlgIuqZRI3rgXx6i3S/yb1</phash>
       </entry>
     </users>
+    <password-complexity>
+      <enabled>yes</enabled>
+      <minimum-length>8</minimum-length>
+    </password-complexity>
   </mgt-config>
   <shared>
     <application/>
@@ -80,7 +82,7 @@
       </report>
     </botnet>
     <admin-role>
-      <entry name="apiadmin">
+      <entry name="Aviatrix-API-Role">
         <role>
           <device>
             <webui>
@@ -94,8 +96,10 @@
                   <wildfire>enable</wildfire>
                   <data-filtering>enable</data-filtering>
                   <hipmatch>enable</hipmatch>
+                  <globalprotect>enable</globalprotect>
                   <iptag>enable</iptag>
                   <userid>enable</userid>
+                  <decryption>enable</decryption>
                   <tunnel>enable</tunnel>
                   <configuration>enable</configuration>
                   <system>enable</system>
@@ -128,6 +132,7 @@
                   <url-log>enable</url-log>
                   <url-summary>enable</url-summary>
                   <hipmatch>enable</hipmatch>
+                  <globalprotect>enable</globalprotect>
                   <wildfire-log>enable</wildfire-log>
                   <tunnel-log>enable</tunnel-log>
                   <tunnel-summary>enable</tunnel-summary>
@@ -151,18 +156,21 @@
                 <application-override-rulebase>enable</application-override-rulebase>
                 <authentication-rulebase>enable</authentication-rulebase>
                 <dos-rulebase>enable</dos-rulebase>
+                <sdwan-rulebase>enable</sdwan-rulebase>
                 <rule-hit-count-reset>enable</rule-hit-count-reset>
               </policies>
               <objects>
                 <addresses>enable</addresses>
                 <address-groups>enable</address-groups>
                 <regions>enable</regions>
+                <dynamic-user-groups>enable</dynamic-user-groups>
                 <applications>enable</applications>
                 <application-groups>enable</application-groups>
                 <application-filters>enable</application-filters>
                 <services>enable</services>
                 <service-groups>enable</service-groups>
                 <tags>enable</tags>
+                <devices>enable</devices>
                 <global-protect>
                   <hip-objects>enable</hip-objects>
                   <hip-profiles>enable</hip-profiles>
@@ -190,6 +198,12 @@
                 <decryption>
                   <decryption-profile>enable</decryption-profile>
                 </decryption>
+                <sdwan>
+                  <sdwan-profile>enable</sdwan-profile>
+                  <sdwan-saas-quality-profile>enable</sdwan-saas-quality-profile>
+                  <sdwan-dist-profile>enable</sdwan-dist-profile>
+                  <sdwan-error-correction-profile>enable</sdwan-error-correction-profile>
+                </sdwan>
                 <schedules>enable</schedules>
               </objects>
               <network>
@@ -206,7 +220,6 @@
                   <portals>enable</portals>
                   <gateways>enable</gateways>
                   <mdm>enable</mdm>
-                  <device-block-list>enable</device-block-list>
                   <clientless-apps>enable</clientless-apps>
                   <clientless-app-groups>enable</clientless-app-groups>
                 </global-protect>
@@ -224,6 +237,7 @@
                   <lldp-profile>enable</lldp-profile>
                   <bfd-profile>enable</bfd-profile>
                 </network-profiles>
+                <sdwan-interface-profile>enable</sdwan-interface-profile>
               </network>
               <device>
                 <setup>
@@ -244,6 +258,8 @@
                 <authentication-profile>enable</authentication-profile>
                 <authentication-sequence>enable</authentication-sequence>
                 <user-identification>enable</user-identification>
+                <data-redistribution>enable</data-redistribution>
+                <device-quarantine>enable</device-quarantine>
                 <vm-info-source>enable</vm-info-source>
                 <troubleshooting>enable</troubleshooting>
                 <certificate-management>
@@ -253,6 +269,7 @@
                   <ssl-tls-service-profile>enable</ssl-tls-service-profile>
                   <scep>enable</scep>
                   <ssl-decryption-exclusion>enable</ssl-decryption-exclusion>
+                  <ssh-service-profile>enable</ssh-service-profile>
                 </certificate-management>
                 <block-pages>enable</block-pages>
                 <log-settings>
@@ -261,6 +278,7 @@
                   <iptag>enable</iptag>
                   <user-id>enable</user-id>
                   <hipmatch>enable</hipmatch>
+                  <globalprotect>enable</globalprotect>
                   <cc-alarm>enable</cc-alarm>
                   <manage-log>enable</manage-log>
                 </log-settings>
@@ -289,7 +307,17 @@
                 <licenses>enable</licenses>
                 <support>enable</support>
                 <master-key>enable</master-key>
+                <policy-recommendations>
+                  <iot>enable</iot>
+                  <saas>enable</saas>
+                </policy-recommendations>
               </device>
+              <operations>
+                <reboot>enable</reboot>
+                <generate-tech-support-file>enable</generate-tech-support-file>
+                <generate-stats-dump-file>enable</generate-stats-dump-file>
+                <download-core-files>enable</download-core-files>
+              </operations>
               <privacy>
                 <show-full-ip-addresses>enable</show-full-ip-addresses>
                 <show-user-names-in-logs-and-reports>enable</show-user-names-in-logs-and-reports>
@@ -315,6 +343,103 @@
               <op>enable</op>
               <commit>enable</commit>
             </xmlapi>
+            <restapi>
+              <objects>
+                <addresses>enable</addresses>
+                <address-groups>enable</address-groups>
+                <regions>enable</regions>
+                <dynamic-user-groups>enable</dynamic-user-groups>
+                <applications>enable</applications>
+                <application-groups>enable</application-groups>
+                <application-filters>enable</application-filters>
+                <services>enable</services>
+                <service-groups>enable</service-groups>
+                <tags>enable</tags>
+                <devices>enable</devices>
+                <globalprotect-hip-objects>enable</globalprotect-hip-objects>
+                <globalprotect-hip-profiles>enable</globalprotect-hip-profiles>
+                <external-dynamic-lists>enable</external-dynamic-lists>
+                <custom-data-patterns>enable</custom-data-patterns>
+                <custom-spyware-signatures>enable</custom-spyware-signatures>
+                <custom-vulnerability-signatures>enable</custom-vulnerability-signatures>
+                <custom-url-categories>enable</custom-url-categories>
+                <antivirus-security-profiles>enable</antivirus-security-profiles>
+                <anti-spyware-security-profiles>enable</anti-spyware-security-profiles>
+                <vulnerability-protection-security-profiles>enable</vulnerability-protection-security-profiles>
+                <url-filtering-security-profiles>enable</url-filtering-security-profiles>
+                <file-blocking-security-profiles>enable</file-blocking-security-profiles>
+                <wildfire-analysis-security-profiles>enable</wildfire-analysis-security-profiles>
+                <data-filtering-security-profiles>enable</data-filtering-security-profiles>
+                <dos-protection-security-profiles>enable</dos-protection-security-profiles>
+                <gtp-protection-security-profiles>enable</gtp-protection-security-profiles>
+                <sctp-protection-security-profiles>enable</sctp-protection-security-profiles>
+                <security-profile-groups>enable</security-profile-groups>
+                <log-forwarding-profiles>enable</log-forwarding-profiles>
+                <authentication-enforcements>enable</authentication-enforcements>
+                <decryption-profiles>enable</decryption-profiles>
+                <schedules>enable</schedules>
+                <sdwan-path-quality-profiles>enable</sdwan-path-quality-profiles>
+                <sdwan-saas-quality-profiles>enable</sdwan-saas-quality-profiles>
+                <sdwan-traffic-distribution-profiles>enable</sdwan-traffic-distribution-profiles>
+                <sdwan-error-correction-profiles>enable</sdwan-error-correction-profiles>
+              </objects>
+              <policies>
+                <security-rules>enable</security-rules>
+                <nat-rules>enable</nat-rules>
+                <qos-rules>enable</qos-rules>
+                <policy-based-forwarding-rules>enable</policy-based-forwarding-rules>
+                <decryption-rules>enable</decryption-rules>
+                <tunnel-inspection-rules>enable</tunnel-inspection-rules>
+                <application-override-rules>enable</application-override-rules>
+                <authentication-rules>enable</authentication-rules>
+                <dos-rules>enable</dos-rules>
+                <sdwan-rules>enable</sdwan-rules>
+              </policies>
+              <network>
+                <aggregate-ethernet-interfaces>enable</aggregate-ethernet-interfaces>
+                <ethernet-interfaces>enable</ethernet-interfaces>
+                <vlan-interfaces>enable</vlan-interfaces>
+                <loopback-interfaces>enable</loopback-interfaces>
+                <tunnel-interfaces>enable</tunnel-interfaces>
+                <zones>enable</zones>
+                <vlans>enable</vlans>
+                <virtual-wires>enable</virtual-wires>
+                <virtual-routers>enable</virtual-routers>
+                <logical-routers>enable</logical-routers>
+                <bgp-routing-profiles>enable</bgp-routing-profiles>
+                <ipsec-tunnels>enable</ipsec-tunnels>
+                <gre-tunnels>enable</gre-tunnels>
+                <dhcp-servers>enable</dhcp-servers>
+                <dhcp-relays>enable</dhcp-relays>
+                <dns-proxies>enable</dns-proxies>
+                <globalprotect-portals>enable</globalprotect-portals>
+                <globalprotect-gateways>enable</globalprotect-gateways>
+                <globalprotect-mdm-servers>enable</globalprotect-mdm-servers>
+                <globalprotect-clientless-apps>enable</globalprotect-clientless-apps>
+                <globalprotect-clientless-app-groups>enable</globalprotect-clientless-app-groups>
+                <qos-interfaces>enable</qos-interfaces>
+                <lldp>enable</lldp>
+                <globalprotect-ipsec-crypto-network-profiles>enable</globalprotect-ipsec-crypto-network-profiles>
+                <ike-gateway-network-profiles>enable</ike-gateway-network-profiles>
+                <ipsec-crypto-network-profiles>enable</ipsec-crypto-network-profiles>
+                <ike-crypto-network-profiles>enable</ike-crypto-network-profiles>
+                <tunnel-monitor-network-profiles>enable</tunnel-monitor-network-profiles>
+                <interface-management-network-profiles>enable</interface-management-network-profiles>
+                <zone-protection-network-profiles>enable</zone-protection-network-profiles>
+                <qos-network-profiles>enable</qos-network-profiles>
+                <lldp-network-profiles>enable</lldp-network-profiles>
+                <bfd-network-profiles>enable</bfd-network-profiles>
+                <sdwan-interfaces>enable</sdwan-interfaces>
+                <sdwan-interface-profiles>enable</sdwan-interface-profiles>
+              </network>
+              <device>
+                <log-interface-setting>enable</log-interface-setting>
+                <virtual-systems>enable</virtual-systems>
+              </device>
+              <system>
+                <configuration>enable</configuration>
+              </system>
+            </restapi>
           </device>
         </role>
       </entry>
@@ -327,16 +452,16 @@
           <ethernet>
             <entry name="ethernet1/1">
               <layer3>
-                <ipv6>
-                  <neighbor-discovery>
-                    <router-advertisement>
-                      <enable>no</enable>
-                    </router-advertisement>
-                  </neighbor-discovery>
-                </ipv6>
                 <ndp-proxy>
                   <enabled>no</enabled>
                 </ndp-proxy>
+                <sdwan-link-settings>
+                  <upstream-nat>
+                    <enable>no</enable>
+                    <static-ip/>
+                  </upstream-nat>
+                  <enable>no</enable>
+                </sdwan-link-settings>
                 <dhcp-client>
                   <create-default-route>no</create-default-route>
                 </dhcp-client>
@@ -347,16 +472,16 @@
             </entry>
             <entry name="ethernet1/2">
               <layer3>
-                <ipv6>
-                  <neighbor-discovery>
-                    <router-advertisement>
-                      <enable>no</enable>
-                    </router-advertisement>
-                  </neighbor-discovery>
-                </ipv6>
                 <ndp-proxy>
                   <enabled>no</enabled>
                 </ndp-proxy>
+                <sdwan-link-settings>
+                  <upstream-nat>
+                    <enable>no</enable>
+                    <static-ip/>
+                  </upstream-nat>
+                  <enable>no</enable>
+                </sdwan-link-settings>
                 <dhcp-client>
                   <create-default-route>no</create-default-route>
                 </dhcp-client>
@@ -483,32 +608,36 @@
         <qos>
           <profile>
             <entry name="default">
-              <class>
-                <entry name="class1">
-                  <priority>real-time</priority>
-                </entry>
-                <entry name="class2">
-                  <priority>high</priority>
-                </entry>
-                <entry name="class3">
-                  <priority>high</priority>
-                </entry>
-                <entry name="class4">
-                  <priority>medium</priority>
-                </entry>
-                <entry name="class5">
-                  <priority>medium</priority>
-                </entry>
-                <entry name="class6">
-                  <priority>low</priority>
-                </entry>
-                <entry name="class7">
-                  <priority>low</priority>
-                </entry>
-                <entry name="class8">
-                  <priority>low</priority>
-                </entry>
-              </class>
+              <class-bandwidth-type>
+                <mbps>
+                  <class>
+                    <entry name="class1">
+                      <priority>real-time</priority>
+                    </entry>
+                    <entry name="class2">
+                      <priority>high</priority>
+                    </entry>
+                    <entry name="class3">
+                      <priority>high</priority>
+                    </entry>
+                    <entry name="class4">
+                      <priority>medium</priority>
+                    </entry>
+                    <entry name="class5">
+                      <priority>medium</priority>
+                    </entry>
+                    <entry name="class6">
+                      <priority>low</priority>
+                    </entry>
+                    <entry name="class7">
+                      <priority>low</priority>
+                    </entry>
+                    <entry name="class8">
+                      <priority>low</priority>
+                    </entry>
+                  </class>
+                </mbps>
+              </class-bandwidth-type>
             </entry>
           </profile>
         </qos>
@@ -533,11 +662,6 @@
               <member>ethernet1/1</member>
               <member>ethernet1/2</member>
             </interface>
-            <routing-table>
-              <ip>
-                <static-route/>
-              </ip>
-            </routing-table>
           </entry>
         </virtual-router>
       </network>
@@ -546,9 +670,9 @@
           <type>
             <dhcp-client>
               <send-hostname>yes</send-hostname>
-              <send-client-id>yes</send-client-id>
-              <accept-dhcp-hostname>yes</accept-dhcp-hostname>
-              <accept-dhcp-domain>yes</accept-dhcp-domain>
+              <send-client-id>no</send-client-id>
+              <accept-dhcp-hostname>no</accept-dhcp-hostname>
+              <accept-dhcp-domain>no</accept-dhcp-domain>
             </dhcp-client>
           </type>
           <update-server>updates.paloaltonetworks.com</update-server>
@@ -577,17 +701,15 @@
           <management>
             <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
             <initcfg>
-              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDUXNMUjhOOFhhRWtkVTJKT0t6TXF5N21SSEx5aFMrc01reUh2dHl4Ni8xc2dtQU0wQ1N3WXdYcmhoeG4wYnpNdDl4TFl2V0taaGUrektmeCszdWhySHg5Yi83djhEUzlZbmVudzQ5ejl1MTJUaEFSV3BMUUxHRU9SdnpwK0FGTGlmSjhRR3lSR0hIMnU2NTA2amNFTkNqRy9mbnVPSTA0NTZHdnZ6ZlM5ejVPOXkzYnRtWUZZM3ZqQU43WEtKNksxd1UyRExLZXFMcVo0S25WMjZ1T1dBbFMvL1c0bGtYTHhBNjVLc01PMjc4TnNWR3JSRlNBOXFjRGFNdEpQMUtJd201T0grWmF4R2VOUVNISm9Zd083KzVNTk9iZ0xHbVZNb0JTOXRod1ROY1RYZFN1Tkd3czNURVU0eWdVMEVWUWIvU2E0bm1kdEptT1pHWXJpd29FSmYgd2VzdC1zZXJ2ZXItMQ==</public-key>
+              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDYnNaaytwYnBjZ2tQOGF0ai82TjVsNngvYjJtSDdNaFJGcndjVGpVQk5qcUx3V0JnZGNIc1M5TEJUWnVDS1ZnSnZDYXlhL2lDUnF0QmgvZjI1dW1VMGkvY0FiQ1hzcVVwWW9RNFhtVmxranh2T3dpMWY0T1BrbzRoVmsrT05YVDhraUdZT3hnVmo3bGtpcjhPNlhIdnY5YW96SzRycFhUaDl2RG5yL0pvenZxWUxHZVR3b0cvdzZWcGMrTHFmc2FkYlpyQU5hSkc4bVhZVXdNL0hPRm5kc3BSaFN2c0FKQUIxNFZyTUNmSnJSUTFoOWVndklFdXByL2JIcTJaY1pITlJEVmpqTXh4cXkxWGV6RXBwRklXcWZOOUxXWVA3MFRKLzdPNWVKQ25aUlNRaDkrelQ0L08ya1A4aENySjZMQmZzdTl4SnZFNm4reVB1Ly9zdmFyVGYgdnBjLTA0OTc3YjU5MzE2MGY4YTYzX2F3c3RndzE0LWF6MS1mdzE=</public-key>
               <type>
                 <dhcp-client>
                   <send-hostname>yes</send-hostname>
-                  <send-client-id>yes</send-client-id>
-                  <accept-dhcp-hostname>yes</accept-dhcp-hostname>
-                  <accept-dhcp-domain>yes</accept-dhcp-domain>
+                  <send-client-id>no</send-client-id>
+                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                  <accept-dhcp-domain>no</accept-dhcp-domain>
                 </dhcp-client>
               </type>
-              <dgname>firenet_global</dgname>
-              <op-command-modes>jumbo-frame,mgmt-interface-swap</op-command-modes>
             </initcfg>
           </management>
         </setting>
@@ -615,23 +737,15 @@
           <service/>
           <service-group/>
           <schedule/>
-          <import>
-            <network>
-              <interface>
-                <member>ethernet1/1</member>
-                <member>ethernet1/2</member>
-              </interface>
-            </network>
-          </import>
           <rulebase>
             <security>
               <rules>
-                <entry name="allow-all" uuid="aaabfa90-b5ab-4e40-887e-e165e03e681a">
+                <entry name="Outbound" uuid="686b4dc4-e379-4216-be4f-fb40bcff9337">
                   <to>
-                    <member>any</member>
+                    <member>WAN</member>
                   </to>
                   <from>
-                    <member>any</member>
+                    <member>LAN</member>
                   </from>
                   <source>
                     <member>any</member>
@@ -649,19 +763,21 @@
                     <member>any</member>
                   </application>
                   <service>
-                    <member>any</member>
+                    <member>application-default</member>
                   </service>
-                  <hip-profiles>
+                  <source-hip>
                     <member>any</member>
-                  </hip-profiles>
+                  </source-hip>
+                  <destination-hip>
+                    <member>any</member>
+                  </destination-hip>
                   <action>allow</action>
-                  <log-start>yes</log-start>
                 </entry>
               </rules>
             </security>
             <nat>
               <rules>
-                <entry name="Egress" uuid="4555541f-d0a3-4ae4-aa46-407f47fef846">
+                <entry name="NAT" uuid="9b0eb5c3-8410-4844-8826-5bb965411739">
                   <source-translation>
                     <dynamic-ip-and-port>
                       <interface-address>
@@ -687,6 +803,14 @@
               </rules>
             </nat>
           </rulebase>
+          <import>
+            <network>
+              <interface>
+                <member>ethernet1/1</member>
+                <member>ethernet1/2</member>
+              </interface>
+            </network>
+          </import>
         </entry>
       </vsys>
     </entry>

@@ -70,29 +70,7 @@ resource "aws_iam_policy" "pan_bootstrap_policy" {
   )
 }
 
-resource "aws_iam_role" "pan_bootstrap_role" {
-  name = "bootstrap-VM-S3-role"
-  assume_role_policy = jsonencode(
-    {
-      "Version" : "2012-10-17",
-      "Statement" : [
-        {
-          "Effect" : "Allow",
-          "Action" : [
-            "sts:AssumeRole"
-          ],
-          "Principal" : {
-            "Service" : [
-              "ec2.amazonaws.com"
-            ]
-          }
-        }
-      ]
-    }
-  )
-}
-
 resource "aws_iam_role_policy_attachment" "pan_bootstrap_role_policy_attachment" {
-  role       = aws_iam_role.pan_bootstrap_role.name
+  role       = "aviatrix-role-ec2"
   policy_arn = aws_iam_policy.pan_bootstrap_policy.arn
 }

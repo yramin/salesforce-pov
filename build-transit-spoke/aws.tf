@@ -45,15 +45,17 @@ module "dev2" {
 # us-east-1
 
 module "awstgw14" {
-  source         = "terraform-aviatrix-modules/aws-transit-firenet/aviatrix"
-  version        = "5.0.0"
-  name           = "awstgw14"
-  region         = "us-east-1"
-  account        = var.aws_account_name
-  cidr           = "10.14.0.0/16"
-  firewall_image = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
-  prefix         = false
-  suffix         = false
+  source                  = "terraform-aviatrix-modules/aws-transit-firenet/aviatrix"
+  version                 = "5.0.0"
+  name                    = "awstgw14"
+  region                  = "us-east-1"
+  account                 = var.aws_account_name
+  cidr                    = "10.14.0.0/16"
+  firewall_image          = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
+  prefix                  = false
+  suffix                  = false
+  bootstrap_bucket_name_1 = aws_s3_bucket.pan_bootstrap_s3.bucket
+  iam_role_1              = var.ec2_role_name
 }
 
 module "prod3" {
