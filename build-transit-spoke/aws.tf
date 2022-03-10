@@ -17,13 +17,13 @@ module "prod1" {
   name       = "prod1"
   region     = "us-west-2"
   cidr       = "10.1.0.0/16"
-  account    = var.aws_account_name
+  account    = aviatrix_account.aws_spoke.account_name
   transit_gw = module.awstgw13.transit_gateway.gw_name
 }
 
 resource "aviatrix_gateway" "egress" {
   cloud_type   = 1
-  account_name = var.aws_account_name
+  account_name = aviatrix_account.aws_spoke.account_name
   gw_name      = "egress"
   vpc_id       = module.prod1.vpc.vpc_id
   vpc_reg      = "us-west-2"
@@ -38,7 +38,7 @@ module "dev2" {
   name       = "dev2"
   region     = "us-west-2"
   cidr       = "10.2.0.0/16"
-  account    = var.aws_account_name
+  account    = aviatrix_account.aws_spoke.account_name
   transit_gw = module.awstgw13.transit_gateway.gw_name
 }
 
@@ -65,7 +65,7 @@ module "prod3" {
   name       = "prod3"
   region     = "us-east-1"
   cidr       = "10.3.0.0/16"
-  account    = var.aws_account_name
+  account    = aviatrix_account.aws_spoke.account_name
   transit_gw = module.awstgw14.transit_gateway.gw_name
 }
 
@@ -76,7 +76,7 @@ module "dev4" {
   name       = "dev4"
   region     = "us-east-1"
   cidr       = "10.4.0.0/16"
-  account    = var.aws_account_name
+  account    = aviatrix_account.aws_spoke.account_name
   transit_gw = module.awstgw14.transit_gateway.gw_name
 }
 
@@ -97,6 +97,6 @@ module "tableau5" {
   name       = "tableau5"
   region     = "us-east-1"
   cidr       = "10.5.0.0/16"
-  account    = var.aws_account_name
+  account    = aviatrix_account.aws_spoke.account_name
   transit_gw = module.awstgw15.transit_gateway.gw_name
 }

@@ -220,7 +220,7 @@ resource "aviatrix_transit_external_device_conn" "awstgw15_onprem" {
 }
 
 resource "aviatrix_transit_external_device_conn" "gcptgw16_onprem" {
-  vpc_id                   = join("", [module.gcptgw16.vpc.vpc_id, "~-~", var.gcloud_project_id])
+  vpc_id                   = join("", [module.gcptgw16.vpc.vpc_id, "~-~", var.gcloud_project_id_transit])
   connection_name          = "gcptgw16-onprem"
   gw_name                  = module.gcptgw16.transit_gateway.gw_name
   connection_type          = "bgp"
@@ -234,7 +234,7 @@ resource "aviatrix_transit_external_device_conn" "gcptgw16_onprem" {
 }
 
 resource "aviatrix_transit_external_device_conn" "gcptgw17_onprem" {
-  vpc_id                   = join("", [module.gcptgw17.vpc.vpc_id, "~-~", var.gcloud_project_id])
+  vpc_id                   = join("", [module.gcptgw17.vpc.vpc_id, "~-~", var.gcloud_project_id_transit])
   connection_name          = "gcptgw17-onprem"
   gw_name                  = module.gcptgw17.transit_gateway.gw_name
   connection_type          = "bgp"

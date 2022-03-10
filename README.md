@@ -4,6 +4,7 @@
 
 - AWS Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
 - Increase VPC and Elastic IP quotas in us-west-1 and us-east-1.
+- The AWS account used for Spokes must have IAM roles, policies and trust relationship to the primary account set up. The Aviatrix Controller has a link to a CloudFormation template that will configure this. See https://docs.aviatrix.com/HowTos/aviatrix_account.html#setup-additional-access-account-for-aws-cloud
 - Subscribe to the following AMIs:
   - Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q
   - Aviatrix CoPilot: https://aws.amazon.com/marketplace/pp?sku=bjl4xsl3kdlaukmyctcb7np9s
@@ -22,6 +23,8 @@
 ## 2. build-transit-spoke
 
 - Update values in `build-transit-spoke/terraform.tfvars`.
+- For AWS, Transit Gateways are deployed using the account that was onboarded when building the Aviatrix Controller. Spoke Gateways are deployed using a new AWS account.
+- For GCP, Transit Gateways are deployed using a new GCP account and Spoke Gateays are deployed using a different GCP account.
 - For information on how to create the .json file for GCP, see https://docs.aviatrix.com/HowTos/CreateGCloudAccount.html.
 - For information on Aviatrix Controller HA, see https://docs.aviatrix.com/HowTos/controller_ha.html.
 
