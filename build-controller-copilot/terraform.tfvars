@@ -1,4 +1,4 @@
-admin_email         = "rlee@aviatrix.com"
+admin_email         = "changeme@example.com"
 admin_password      = "Aviatrix12345#"
 access_account_name = "Salesforce-AWS"
 aws_account_id      = "111111111111"
