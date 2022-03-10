@@ -66,10 +66,10 @@ variable "aviatrix_copilot_ip" {
   type = string
 }
 
-variable "onprem_csr_username" {
-  type = string
-}
+# variable "onprem_csr_username" {
+#   type = string
+# }
 
-variable "onprem_csr_password" {
-  type = string
-}
+# variable "onprem_csr_password" {
+#   type = string
+# }
