@@ -105,7 +105,6 @@ module "transit-peering" {
   transit_gateways = [
     module.awstgw13.transit_gateway.gw_name,
     module.awstgw14.transit_gateway.gw_name,
-    module.awstgw15.transit_gateway.gw_name,
     module.gcptgw16.transit_gateway.gw_name,
     module.gcptgw17.transit_gateway.gw_name
   ]

@@ -80,23 +80,14 @@ module "dev4" {
   transit_gw = module.awstgw14.transit_gateway.gw_name
 }
 
-module "awstgw15" {
-  source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version = "1.1.0"
-  cloud   = "AWS"
-  name    = "awstgw15"
-  region  = "us-east-1"
-  cidr    = "10.15.0.0/16"
-  account = var.aws_account_name
-}
-
 module "tableau5" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "AWS"
-  name       = "tableau5"
-  region     = "us-east-1"
-  cidr       = "10.5.0.0/16"
-  account    = aviatrix_account.aws_spoke.account_name
-  transit_gw = module.awstgw15.transit_gateway.gw_name
+  source         = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version        = "1.1.0"
+  cloud          = "AWS"
+  name           = "tableau5"
+  region         = "us-east-1"
+  cidr           = "10.5.0.0/16"
+  single_ip_snat = true
+  account        = aviatrix_account.aws_spoke.account_name
+  transit_gw     = module.awstgw14.transit_gateway.gw_name
 }
