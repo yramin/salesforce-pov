@@ -118,6 +118,6 @@ resource "aviatrix_segmentation_security_domain" "dev" {
   domain_name = "Dev"
 }
 
-resource "aviatrix_segmentation_security_domain" "tableua" {
+resource "aviatrix_segmentation_security_domain" "tableau" {
   domain_name = "Tableau"
 }
