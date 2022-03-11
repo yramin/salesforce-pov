@@ -109,3 +109,15 @@ module "transit-peering" {
     module.gcptgw17.transit_gateway.gw_name
   ]
 }
+
+resource "aviatrix_segmentation_security_domain" "prod" {
+  domain_name = "Prod"
+}
+
+resource "aviatrix_segmentation_security_domain" "dev" {
+  domain_name = "Dev"
+}
+
+resource "aviatrix_segmentation_security_domain" "tableua" {
+  domain_name = "Tableau"
+}
