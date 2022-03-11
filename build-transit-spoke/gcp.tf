@@ -1,13 +1,14 @@
 # us-west1 
 
 module "gcptgw16" {
-  source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version = "1.1.0"
-  cloud   = "GCP"
-  name    = "gcptgw16"
-  region  = "us-west1"
-  cidr    = "10.16.0.0/16"
-  account = aviatrix_account.gcp_transit.account_name
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.0"
+  cloud               = "GCP"
+  name                = "gcptgw16"
+  region              = "us-west1"
+  cidr                = "10.16.0.0/16"
+  account             = aviatrix_account.gcp_transit.account_name
+  enable_segmentation = true
 }
 
 module "prod7" {
@@ -35,13 +36,14 @@ module "dev6" {
 # us-east1
 
 module "gcptgw17" {
-  source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version = "1.1.0"
-  cloud   = "GCP"
-  name    = "gcptgw17"
-  region  = "us-east1"
-  cidr    = "10.17.0.0/16"
-  account = aviatrix_account.gcp_transit.account_name
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.0"
+  cloud               = "GCP"
+  name                = "gcptgw17"
+  region              = "us-east1"
+  cidr                = "10.17.0.0/16"
+  account             = aviatrix_account.gcp_transit.account_name
+  enable_segmentation = true
 }
 
 module "prod9" {
