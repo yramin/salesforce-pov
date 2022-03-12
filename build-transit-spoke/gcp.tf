@@ -12,25 +12,27 @@ module "gcptgw16" {
 }
 
 module "prod7" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "GCP"
-  name       = "prod7"
-  region     = "us-west1"
-  cidr       = "10.7.0.0/16"
-  account    = aviatrix_account.gcp_spoke.account_name
-  transit_gw = module.gcptgw16.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "GCP"
+  name            = "prod7"
+  region          = "us-west1"
+  cidr            = "10.7.0.0/16"
+  account         = aviatrix_account.gcp_spoke.account_name
+  transit_gw      = module.gcptgw16.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
 
 module "dev6" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "GCP"
-  name       = "dev6"
-  region     = "us-west1"
-  cidr       = "10.6.0.0/16"
-  account    = aviatrix_account.gcp_spoke.account_name
-  transit_gw = module.gcptgw16.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "GCP"
+  name            = "dev6"
+  region          = "us-west1"
+  cidr            = "10.6.0.0/16"
+  account         = aviatrix_account.gcp_spoke.account_name
+  transit_gw      = module.gcptgw16.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.dev.domain_name
 }
 
 # us-east1
@@ -47,23 +49,25 @@ module "gcptgw17" {
 }
 
 module "prod9" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "GCP"
-  name       = "prod9"
-  region     = "us-east1"
-  cidr       = "10.9.0.0/16"
-  account    = aviatrix_account.gcp_spoke.account_name
-  transit_gw = module.gcptgw17.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "GCP"
+  name            = "prod9"
+  region          = "us-east1"
+  cidr            = "10.9.0.0/16"
+  account         = aviatrix_account.gcp_spoke.account_name
+  transit_gw      = module.gcptgw17.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
 
 module "dev8" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "GCP"
-  name       = "dev8"
-  region     = "us-east1"
-  cidr       = "10.8.0.0/16"
-  account    = aviatrix_account.gcp_spoke.account_name
-  transit_gw = module.gcptgw17.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "GCP"
+  name            = "dev8"
+  region          = "us-east1"
+  cidr            = "10.8.0.0/16"
+  account         = aviatrix_account.gcp_spoke.account_name
+  transit_gw      = module.gcptgw17.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.dev.domain_name
 }

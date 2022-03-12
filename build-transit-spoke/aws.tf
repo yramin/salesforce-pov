@@ -16,14 +16,15 @@ module "awstgw13" {
 }
 
 module "prod1" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "AWS"
-  name       = "prod1"
-  region     = "us-west-2"
-  cidr       = "10.1.0.0/16"
-  account    = aviatrix_account.aws_spoke.account_name
-  transit_gw = module.awstgw13.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "AWS"
+  name            = "prod1"
+  region          = "us-west-2"
+  cidr            = "10.1.0.0/16"
+  account         = aviatrix_account.aws_spoke.account_name
+  transit_gw      = module.awstgw13.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
 
 resource "aviatrix_gateway" "egress" {
@@ -37,14 +38,15 @@ resource "aviatrix_gateway" "egress" {
 }
 
 module "dev2" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "AWS"
-  name       = "dev2"
-  region     = "us-west-2"
-  cidr       = "10.2.0.0/16"
-  account    = aviatrix_account.aws_spoke.account_name
-  transit_gw = module.awstgw13.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "AWS"
+  name            = "dev2"
+  region          = "us-west-2"
+  cidr            = "10.2.0.0/16"
+  account         = aviatrix_account.aws_spoke.account_name
+  transit_gw      = module.awstgw13.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.dev.domain_name
 }
 
 # us-east-1
@@ -65,35 +67,38 @@ module "awstgw14" {
 }
 
 module "prod3" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "AWS"
-  name       = "prod3"
-  region     = "us-east-1"
-  cidr       = "10.3.0.0/16"
-  account    = aviatrix_account.aws_spoke.account_name
-  transit_gw = module.awstgw14.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "AWS"
+  name            = "prod3"
+  region          = "us-east-1"
+  cidr            = "10.3.0.0/16"
+  account         = aviatrix_account.aws_spoke.account_name
+  transit_gw      = module.awstgw14.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
 
 module "dev4" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.0"
-  cloud      = "AWS"
-  name       = "dev4"
-  region     = "us-east-1"
-  cidr       = "10.4.0.0/16"
-  account    = aviatrix_account.aws_spoke.account_name
-  transit_gw = module.awstgw14.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "AWS"
+  name            = "dev4"
+  region          = "us-east-1"
+  cidr            = "10.4.0.0/16"
+  account         = aviatrix_account.aws_spoke.account_name
+  transit_gw      = module.awstgw14.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.dev.domain_name
 }
 
 module "tableau5" {
-  source         = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version        = "1.1.0"
-  cloud          = "AWS"
-  name           = "tableau5"
-  region         = "us-east-1"
-  cidr           = "10.5.0.0/16"
-  single_ip_snat = true
-  account        = aviatrix_account.aws_spoke.account_name
-  transit_gw     = module.awstgw14.transit_gateway.gw_name
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.0"
+  cloud           = "AWS"
+  name            = "tableau5"
+  region          = "us-east-1"
+  cidr            = "10.5.0.0/16"
+  single_ip_snat  = true
+  account         = aviatrix_account.aws_spoke.account_name
+  transit_gw      = module.awstgw14.transit_gateway.gw_name
+  security_domain = aviatrix_segmentation_security_domain.tableau.domain_name
 }
