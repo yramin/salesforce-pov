@@ -9,28 +9,12 @@ provider "aws" {
   region = "us-west-2"
 }
 
-
-# resource "aviatrix_account" "aws_spoke" {
-#   account_name       = var.aws_account_name_spoke
-#   cloud_type         = 1
-#   aws_account_number = var.aws_account_number_spoke
-#   aws_iam            = true
-# }
-
-
 resource "aviatrix_account" "gcp" {
   account_name                        = var.gcp_account_name
   cloud_type                          = 4
   gcloud_project_id                   = var.gcloud_project_id
   gcloud_project_credentials_filepath = var.gcloud_project_credentials_filepath
 }
-
-# resource "aviatrix_account" "gcp_spoke" {
-#   account_name                        = var.gcp_account_name_spoke
-#   cloud_type                          = 4
-#   gcloud_project_id                   = var.gcloud_project_id_spoke
-#   gcloud_project_credentials_filepath = var.gcloud_project_credentials_filepath_spoke
-# }
 
 resource "aws_s3_bucket" "backups_s3" {
   bucket_prefix = "aviatrix-backups"
