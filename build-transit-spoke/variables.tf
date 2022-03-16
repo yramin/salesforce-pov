@@ -10,14 +10,6 @@ variable "aws_account_name" {
   type = string
 }
 
-variable "aws_account_name_spoke" {
-  type = string
-}
-
-variable "aws_account_number_spoke" {
-  type = string
-}
-
 variable "ec2_role_name" {
   type = string
 }
@@ -26,27 +18,15 @@ variable "app_role_name" {
   type = string
 }
 
-variable "gcp_account_name_transit" {
+variable "gcp_account_name" {
   type = string
 }
 
-variable "gcloud_project_id_transit" {
+variable "gcloud_project_id" {
   type = string
 }
 
-variable "gcloud_project_credentials_filepath_transit" {
-  type = string
-}
-
-variable "gcp_account_name_spoke" {
-  type = string
-}
-
-variable "gcloud_project_id_spoke" {
-  type = string
-}
-
-variable "gcloud_project_credentials_filepath_spoke" {
+variable "gcloud_project_credentials_filepath" {
   type = string
 }
 

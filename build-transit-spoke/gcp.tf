@@ -7,7 +7,7 @@ module "gcptgw16" {
   name                = "gcptgw16"
   region              = "us-west1"
   cidr                = "10.16.0.0/16"
-  account             = aviatrix_account.gcp_transit.account_name
+  account             = aviatrix_account.gcp.account_name
   enable_segmentation = true
 }
 
@@ -18,7 +18,7 @@ module "prod7" {
   name            = "prod7"
   region          = "us-west1"
   cidr            = "10.7.0.0/16"
-  account         = aviatrix_account.gcp_spoke.account_name
+  account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw16.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
@@ -30,7 +30,7 @@ module "dev6" {
   name            = "dev6"
   region          = "us-west1"
   cidr            = "10.6.0.0/16"
-  account         = aviatrix_account.gcp_spoke.account_name
+  account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw16.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
 }
@@ -44,7 +44,7 @@ module "gcptgw17" {
   name                = "gcptgw17"
   region              = "us-east1"
   cidr                = "10.17.0.0/16"
-  account             = aviatrix_account.gcp_transit.account_name
+  account             = aviatrix_account.gcp.account_name
   enable_segmentation = true
 }
 
@@ -55,7 +55,7 @@ module "prod9" {
   name            = "prod9"
   region          = "us-east1"
   cidr            = "10.9.0.0/16"
-  account         = aviatrix_account.gcp_spoke.account_name
+  account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw17.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
@@ -67,7 +67,7 @@ module "dev8" {
   name            = "dev8"
   region          = "us-east1"
   cidr            = "10.8.0.0/16"
-  account         = aviatrix_account.gcp_spoke.account_name
+  account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw17.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
 }
