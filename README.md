@@ -22,8 +22,6 @@
 ## 2. build-transit-spoke
 
 - Update values in `build-transit-spoke/terraform.tfvars`.
-- For AWS, Transit Gateways are deployed using the account that was onboarded when building the Aviatrix Controller. Spoke Gateways are deployed using a new AWS account.
-- For GCP, Transit Gateways are deployed using a new GCP account and Spoke Gateays are deployed using a different GCP account.
 - For information on how to create the .json file for GCP, see https://docs.aviatrix.com/HowTos/CreateGCloudAccount.html.
 - For information on Aviatrix Controller HA, see https://docs.aviatrix.com/HowTos/controller_ha.html.
 
