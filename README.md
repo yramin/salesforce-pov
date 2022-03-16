@@ -49,7 +49,33 @@
 - You can create a custom `bootstrap.xml` by following the instructions in https://docs.paloaltonetworks.com/vm-series/9-0/vm-series-deployment/bootstrap-the-vm-series-firewall/create-the-bootstrapxml-file.html
 - Vendor integration assumes that the admin-api user and password is as listed. If you create a new `bootstrap.xml`, either create the same admin-api user and password or update the vendor integration resources in `build-transit-spoke/pan.tf` with the username and password that was created:
   ```
-  data "aviatrix_firenet_vendor_integration" "fw1" {
+  data "aviatrix_firenet_vendor_integration" "awstgw13_fw1" {
+    vpc_id      = module.awstgw13.aviatrix_firewall_instance[0].vpc_id
+    instance_id = module.awstgw13.aviatrix_firewall_instance[0].instance_id
+    vendor_type = "Palo Alto Networks VM-Series"
+    public_ip   = module.awstgw13.aviatrix_firewall_instance[0].public_ip
+    username    = "admin-api"
+    password    = "Aviatrix12345#"
+    save        = true
+    depends_on = [
+      time_sleep.wait_for_fw_instances
+    ]
+  }
+
+  data "aviatrix_firenet_vendor_integration" "awstgw13_fw2" {
+    vpc_id      = module.awstgw13.aviatrix_firewall_instance[1].vpc_id
+    instance_id = module.awstgw13.aviatrix_firewall_instance[1].instance_id
+    vendor_type = "Palo Alto Networks VM-Series"
+    public_ip   = module.awstgw13.aviatrix_firewall_instance[1].public_ip
+    username    = "admin-api"
+    password    = "Aviatrix12345#"
+    save        = true
+    depends_on = [
+      time_sleep.wait_for_fw_instances
+    ]
+  }
+
+  data "aviatrix_firenet_vendor_integration" "awstgw14_fw1" {
     vpc_id      = module.awstgw14.aviatrix_firewall_instance[0].vpc_id
     instance_id = module.awstgw14.aviatrix_firewall_instance[0].instance_id
     vendor_type = "Palo Alto Networks VM-Series"
@@ -62,7 +88,7 @@
     ]
   }
 
-  data "aviatrix_firenet_vendor_integration" "fw2" {
+  data "aviatrix_firenet_vendor_integration" "awstgw14_fw2" {
     vpc_id      = module.awstgw14.aviatrix_firewall_instance[1].vpc_id
     instance_id = module.awstgw14.aviatrix_firewall_instance[1].instance_id
     vendor_type = "Palo Alto Networks VM-Series"
