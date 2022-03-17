@@ -96,12 +96,30 @@ module "transit-peering" {
 
 resource "aviatrix_segmentation_security_domain" "prod" {
   domain_name = "Prod"
+  depends_on = [
+    module.awstgw13.transit_gateway,
+    module.awstgw14.transit_gateway,
+    module.gcptgw16.transit_gateway,
+    module.gcptgw17.transit_gateway
+  ]
 }
 
 resource "aviatrix_segmentation_security_domain" "dev" {
   domain_name = "Dev"
+  depends_on = [
+    module.awstgw13.transit_gateway,
+    module.awstgw14.transit_gateway,
+    module.gcptgw16.transit_gateway,
+    module.gcptgw17.transit_gateway
+  ]
 }
 
 resource "aviatrix_segmentation_security_domain" "tableau" {
   domain_name = "Tableau"
+  depends_on = [
+    module.awstgw13.transit_gateway,
+    module.awstgw14.transit_gateway,
+    module.gcptgw16.transit_gateway,
+    module.gcptgw17.transit_gateway
+  ]
 }
