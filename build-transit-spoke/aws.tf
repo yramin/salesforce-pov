@@ -25,6 +25,7 @@ module "prod1" {
   account         = var.aws_account_name
   transit_gw      = module.awstgw13.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.prod.domain_name
+  ha_gw           = false
 }
 
 resource "aviatrix_gateway" "egress" {
@@ -47,6 +48,7 @@ module "dev2" {
   account         = var.aws_account_name
   transit_gw      = module.awstgw13.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
+  ha_gw           = false
 }
 
 # us-east-1
@@ -88,6 +90,7 @@ module "dev4" {
   account         = var.aws_account_name
   transit_gw      = module.awstgw14.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
+  ha_gw           = false
 }
 
 module "tableau5" {
@@ -101,4 +104,5 @@ module "tableau5" {
   account         = var.aws_account_name
   transit_gw      = module.awstgw14.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.tableau.domain_name
+  ha_gw           = false
 }

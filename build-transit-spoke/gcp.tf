@@ -33,6 +33,7 @@ module "dev6" {
   account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw16.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
+  ha_gw           = false
 }
 
 # us-east1
@@ -58,6 +59,7 @@ module "prod9" {
   account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw17.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.prod.domain_name
+  ha_gw           = false
 }
 
 module "dev8" {
@@ -70,4 +72,5 @@ module "dev8" {
   account         = aviatrix_account.gcp.account_name
   transit_gw      = module.gcptgw17.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
+  ha_gw           = false
 }
