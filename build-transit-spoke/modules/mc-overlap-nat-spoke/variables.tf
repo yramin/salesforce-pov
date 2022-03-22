@@ -39,7 +39,7 @@ variable "dnat_rules" {
 }
 
 variable "ha_gw" {
-  description = "Specify whether this is an HA gateway"
+  description = "Specify whether the spoke has an HA gateway."
   type = bool
   default = false
 }
