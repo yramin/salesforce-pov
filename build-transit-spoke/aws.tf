@@ -114,5 +114,4 @@ module "tableau5_nat" {
   transit_gw_name = module.awstgw14.transit_gateway.gw_name
   gw1_snat_addr   = "10.33.1.1"
   gw2_snat_addr   = "10.33.1.2"
-  ha_gw           = false
 }
