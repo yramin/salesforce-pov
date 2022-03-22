@@ -108,11 +108,11 @@ module "tableau5" {
 }
 
 module "tableau5_nat" {
-  source          = "terraform-aviatrix-modules/mc-overlap-nat-spoke/aviatrix"
-  version         = "1.0.2"
+  source = "./modules/mc-overlap-nat-spoke"
   spoke_gw_object = module.tableau5.spoke_gateway
   spoke_cidrs     = [module.tableau5.vpc.cidr]
   transit_gw_name = module.awstgw14.transit_gateway.gw_name
   gw1_snat_addr   = "10.33.1.1"
   gw2_snat_addr   = "10.33.1.2"
+  ha_gw           = true
 }
