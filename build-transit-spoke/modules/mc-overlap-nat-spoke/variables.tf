@@ -41,7 +41,3 @@ variable "dnat_rules" {
 variable "ha_gw" {
   default = false
 }
-
-# locals {
-#   is_ha = var.spoke_gw_object.ha_gw_name == "" ? false : true
-# }
