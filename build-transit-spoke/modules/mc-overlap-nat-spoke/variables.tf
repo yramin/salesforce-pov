@@ -39,5 +39,7 @@ variable "dnat_rules" {
 }
 
 variable "ha_gw" {
+  description = "Specify whether this is an HA gateway"
+  type = bool
   default = false
 }
