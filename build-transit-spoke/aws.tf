@@ -94,15 +94,25 @@ module "dev4" {
 }
 
 module "tableau5" {
-  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version         = "1.1.0"
-  cloud           = "AWS"
-  name            = "tableau5"
-  region          = "us-east-1"
-  cidr            = "10.5.0.0/16"
-  single_ip_snat  = true
-  account         = var.aws_account_name
-  transit_gw      = module.awstgw14.transit_gateway.gw_name
-  security_domain = aviatrix_segmentation_security_domain.tableau.domain_name
-  ha_gw           = false
+  source                           = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version                          = "1.1.0"
+  cloud                            = "AWS"
+  name                             = "tableau5"
+  region                           = "us-east-1"
+  cidr                             = "10.3.0.0/16"
+  account                          = var.aws_account_name
+  transit_gw                       = module.awstgw14.transit_gateway.gw_name
+  security_domain                  = aviatrix_segmentation_security_domain.tableau.domain_name
+  ha_gw                            = false
+  included_advertised_spoke_routes = "10.33.1.1/32,10.33.1.2/32"
+}
+
+module "tableau5_nat" {
+  source          = "terraform-aviatrix-modules/mc-overlap-nat-spoke/aviatrix"
+  version         = "1.0.2"
+  spoke_gw_object = module.tableau5.spoke_gateway
+  spoke_cidrs     = [module.tableau5.vpc.cidr]
+  transit_gw_name = module.awstgw14.transit_gateway.gw_name
+  gw1_snat_addr   = "10.33.1.1"
+  gw2_snat_addr   = "10.33.1.2"
 }
