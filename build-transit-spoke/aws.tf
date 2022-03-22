@@ -38,6 +38,21 @@ resource "aviatrix_gateway" "egress" {
   subnet       = module.prod1.vpc.public_subnets[0].cidr
 }
 
+resource "aviatrix_fqdn" "egress_fqdn" {
+  fqdn_tag     = "Egress Traffic"
+  fqdn_enabled = true
+  fqdn_mode    = "white"
+  gw_filter_tag_list {
+    gw_name = aviatrix_gateway.egress.gw_name
+  }
+  domain_names {
+    fqdn   = "salesforce.com"
+    proto  = "tcp"
+    port   = "443"
+    action = "Allow"
+  }
+}
+
 module "dev2" {
   source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version         = "1.1.0"
@@ -108,7 +123,7 @@ module "tableau5" {
 }
 
 module "tableau5_nat" {
-  source = "./modules/mc-overlap-nat-spoke"
+  source          = "./modules/mc-overlap-nat-spoke"
   spoke_gw_object = module.tableau5.spoke_gateway
   spoke_cidrs     = [module.tableau5.vpc.cidr]
   transit_gw_name = module.awstgw14.transit_gateway.gw_name
