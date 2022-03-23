@@ -123,3 +123,23 @@ resource "aviatrix_segmentation_security_domain" "tableau" {
     module.gcptgw17.transit_gateway
   ]
 }
+
+resource "aviatrix_segmentation_security_domain" "onprem" {
+  domain_name = "Onprem"
+  depends_on = [
+    module.awstgw13.transit_gateway,
+    module.awstgw14.transit_gateway,
+    module.gcptgw16.transit_gateway,
+    module.gcptgw17.transit_gateway
+  ]
+}
+
+resource "aviatrix_segmentation_security_domain" "sdwan" {
+  domain_name = "SDWAN"
+  depends_on = [
+    module.awstgw13.transit_gateway,
+    module.awstgw14.transit_gateway,
+    module.gcptgw16.transit_gateway,
+    module.gcptgw17.transit_gateway
+  ]
+}
