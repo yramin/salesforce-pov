@@ -9,6 +9,8 @@ module "gcptgw16" {
   cidr                = "10.16.0.0/16"
   account             = aviatrix_account.gcp.account_name
   enable_segmentation = true
+  insane_mode         = true
+  instance_size       = "n1-highcpu-4"
 }
 
 module "prod7" {
@@ -47,6 +49,8 @@ module "gcptgw17" {
   cidr                = "10.17.0.0/16"
   account             = aviatrix_account.gcp.account_name
   enable_segmentation = true
+  insane_mode         = true
+  instance_size       = "n1-highcpu-4"
 }
 
 module "prod9" {

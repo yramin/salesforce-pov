@@ -13,6 +13,7 @@ module "awstgw13" {
   bootstrap_bucket_name_1 = aws_s3_bucket.pan_bootstrap_s3.bucket
   iam_role_1              = var.ec2_role_name
   enable_segmentation     = true
+  insane_mode             = true
 }
 
 module "prod1" {
@@ -85,6 +86,7 @@ module "awstgw14" {
   bootstrap_bucket_name_1 = aws_s3_bucket.pan_bootstrap_s3.bucket
   iam_role_1              = var.ec2_role_name
   enable_segmentation     = true
+  insane_mode             = true
 }
 
 module "prod3" {
