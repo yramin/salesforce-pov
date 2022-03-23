@@ -75,38 +75,11 @@ resource "aws_iam_role_policy_attachment" "pan_bootstrap_role_policy_attachment"
   policy_arn = aws_iam_policy.pan_bootstrap_policy.arn
 }
 
-
 resource "time_sleep" "wait_for_fw_instances" {
   create_duration = "15m"
   depends_on = [
     module.awstgw13,
     module.awstgw14
-  ]
-}
-
-data "aviatrix_firenet_vendor_integration" "awstgw13_fw1" {
-  vpc_id      = module.awstgw13.aviatrix_firewall_instance[0].vpc_id
-  instance_id = module.awstgw13.aviatrix_firewall_instance[0].instance_id
-  vendor_type = "Palo Alto Networks VM-Series"
-  public_ip   = module.awstgw13.aviatrix_firewall_instance[0].public_ip
-  username    = "admin-api"
-  password    = "Aviatrix12345#"
-  save        = true
-  depends_on = [
-    time_sleep.wait_for_fw_instances
-  ]
-}
-
-data "aviatrix_firenet_vendor_integration" "awstgw13_fw2" {
-  vpc_id      = module.awstgw13.aviatrix_firewall_instance[1].vpc_id
-  instance_id = module.awstgw13.aviatrix_firewall_instance[1].instance_id
-  vendor_type = "Palo Alto Networks VM-Series"
-  public_ip   = module.awstgw13.aviatrix_firewall_instance[1].public_ip
-  username    = "admin-api"
-  password    = "Aviatrix12345#"
-  save        = true
-  depends_on = [
-    time_sleep.wait_for_fw_instances
   ]
 }
 

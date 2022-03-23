@@ -1,19 +1,14 @@
 # us-west-2
 
 module "awstgw13" {
-  source                  = "terraform-aviatrix-modules/aws-transit-firenet/aviatrix"
-  version                 = "5.0.0"
-  name                    = "awstgw13"
-  region                  = "us-west-2"
-  account                 = var.aws_account_name
-  cidr                    = "10.13.0.0/16"
-  firewall_image          = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
-  prefix                  = false
-  suffix                  = false
-  bootstrap_bucket_name_1 = aws_s3_bucket.pan_bootstrap_s3.bucket
-  iam_role_1              = var.ec2_role_name
-  enable_segmentation     = true
-  insane_mode             = true
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.0"
+  cloud               = "AWS"
+  name                = "awstgw13"
+  region              = "us-west-2"
+  cidr                = "10.13.0.0/16"
+  account             = var.aws_account_name
+  enable_segmentation = true
 }
 
 module "prod1" {
