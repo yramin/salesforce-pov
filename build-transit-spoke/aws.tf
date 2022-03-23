@@ -29,28 +29,32 @@ module "prod1" {
 }
 
 resource "aviatrix_gateway" "egress" {
-  cloud_type   = 1
-  account_name = var.aws_account_name
-  gw_name      = "egress"
-  vpc_id       = module.prod1.vpc.vpc_id
-  vpc_reg      = "us-west-2"
-  gw_size      = "t2.micro"
-  subnet       = module.prod1.vpc.public_subnets[0].cidr
+  cloud_type     = 1
+  account_name   = var.aws_account_name
+  gw_name        = "egress"
+  vpc_id         = module.prod1.vpc.vpc_id
+  vpc_reg        = "us-west-2"
+  gw_size        = "t2.micro"
+  subnet         = module.prod1.vpc.public_subnets[0].cidr
+  single_ip_snat = true
 }
 
 resource "aviatrix_fqdn" "egress_fqdn" {
-  fqdn_tag     = "Egress Traffic"
-  fqdn_enabled = true
-  fqdn_mode    = "white"
+  fqdn_tag            = "Egress Traffic"
+  fqdn_enabled        = true
+  fqdn_mode           = "white"
+  manage_domain_names = false
   gw_filter_tag_list {
     gw_name = aviatrix_gateway.egress.gw_name
   }
-  domain_names {
-    fqdn   = "salesforce.com"
-    proto  = "tcp"
-    port   = "443"
-    action = "Allow"
-  }
+}
+
+resource "aviatrix_fqdn_tag_rule" "tag_rule" {
+  fqdn_tag_name = aviatrix_fqdn.egress_fqdn.fqdn_tag
+  fqdn          = "salesforce.com"
+  protocol      = "tcp"
+  port          = "443"
+  action        = "Allow"
 }
 
 module "dev2" {
