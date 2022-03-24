@@ -9,13 +9,6 @@ provider "aws" {
   region = "us-west-2"
 }
 
-resource "aviatrix_account" "aws_transit_spoke" {
-  account_name       = var.aws_account_name_transit_spoke
-  cloud_type         = 1
-  aws_account_number = var.aws_account_id_transit_spoke
-  aws_iam            = true
-}
-
 resource "aviatrix_account" "aws_ma" {
   account_name       = var.aws_account_name_ma
   cloud_type         = 1
