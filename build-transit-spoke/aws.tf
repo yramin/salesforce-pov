@@ -7,7 +7,7 @@ module "awstgw13" {
   name                = "awstgw13"
   region              = "us-west-2"
   cidr                = "10.13.0.0/16"
-  account             = var.aws_account_name
+  account             = aviatrix_account.aws_transit_spoke.account_name
   enable_segmentation = true
 }
 
@@ -18,7 +18,7 @@ module "prod1" {
   name            = "prod1"
   region          = "us-west-2"
   cidr            = "10.1.0.0/16"
-  account         = var.aws_account_name
+  account         = aviatrix_account.aws_transit_spoke.account_name
   transit_gw      = module.awstgw13.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.prod.domain_name
   ha_gw           = false
@@ -26,7 +26,7 @@ module "prod1" {
 
 resource "aviatrix_gateway" "egress" {
   cloud_type     = 1
-  account_name   = var.aws_account_name
+  account_name   = aviatrix_account.aws_transit_spoke.account_name
   gw_name        = "egress"
   vpc_id         = module.prod1.vpc.vpc_id
   vpc_reg        = "us-west-2"
@@ -60,7 +60,7 @@ module "dev2" {
   name            = "dev2"
   region          = "us-west-2"
   cidr            = "10.2.0.0/16"
-  account         = var.aws_account_name
+  account         = aviatrix_account.aws_transit_spoke.account_name
   transit_gw      = module.awstgw13.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
   ha_gw           = false
@@ -73,7 +73,7 @@ module "awstgw14" {
   version                 = "5.0.0"
   name                    = "awstgw14"
   region                  = "us-east-1"
-  account                 = var.aws_account_name
+  account                 = aviatrix_account.aws_transit_spoke.account_name
   cidr                    = "10.14.0.0/16"
   firewall_image          = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
   prefix                  = false
@@ -91,7 +91,7 @@ module "prod3" {
   name            = "prod3"
   region          = "us-east-1"
   cidr            = "10.3.0.0/16"
-  account         = var.aws_account_name
+  account         = aviatrix_account.aws_transit_spoke.account_name
   transit_gw      = module.awstgw14.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.prod.domain_name
 }
@@ -103,7 +103,7 @@ module "dev4" {
   name            = "dev4"
   region          = "us-east-1"
   cidr            = "10.4.0.0/16"
-  account         = var.aws_account_name
+  account         = aviatrix_account.aws_transit_spoke.account_name
   transit_gw      = module.awstgw14.transit_gateway.gw_name
   security_domain = aviatrix_segmentation_security_domain.dev.domain_name
   ha_gw           = false
@@ -116,7 +116,7 @@ module "tableau5" {
   name                             = "tableau5"
   region                           = "us-east-1"
   cidr                             = "10.3.0.0/16"
-  account                          = var.aws_account_name
+  account                          = aviatrix_account.aws_ma.account_name
   transit_gw                       = module.awstgw14.transit_gateway.gw_name
   security_domain                  = aviatrix_segmentation_security_domain.tableau.domain_name
   ha_gw                            = false

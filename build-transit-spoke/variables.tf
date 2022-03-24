@@ -18,6 +18,22 @@ variable "app_role_name" {
   type = string
 }
 
+variable "aws_account_name_transit_spoke" {
+  type = string
+}
+
+variable "aws_account_id_transit_spoke" {
+  type = string
+}
+
+variable "aws_account_name_ma" {
+  type = string
+}
+
+variable "aws_account_id_ma" {
+  type = string
+}
+
 variable "gcp_account_name" {
   type = string
 }
