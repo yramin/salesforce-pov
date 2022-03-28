@@ -41,3 +41,11 @@ variable "copilot_name" {
 variable "keypair" {
   type = string
 }
+
+variable "create_alb" {
+  type = bool
+}
+
+variable "certificate_arn" {
+  type = string
+}

@@ -9,3 +9,5 @@ app_role_name       = "aviatrix-role-app"
 controller_name     = "SalesforceAviatrixController"
 copilot_name        = "SalesforceAviatrixCopilot"
 keypair             = "SalesforceKeypair"
+create_alb          = true
+certificate_arn     = "arn:aws:acm:us-west-2:111111111111:certificate/11111111-2222-3333-4444-555555555555"
