@@ -2,7 +2,7 @@
 
 module "gcptgw16" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.0"
+  version             = "1.1.2"
   cloud               = "GCP"
   name                = "gcptgw16"
   region              = "us-west1"
@@ -42,7 +42,7 @@ module "dev6" {
 
 module "gcptgw17" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.0"
+  version             = "1.1.2"
   cloud               = "GCP"
   name                = "gcptgw17"
   region              = "us-east1"

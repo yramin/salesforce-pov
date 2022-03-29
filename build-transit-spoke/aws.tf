@@ -76,7 +76,7 @@ resource "aviatrix_gateway" "psf" {
 
 module "awstgw13" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.0"
+  version             = "1.1.2"
   cloud               = "AWS"
   name                = "awstgw13"
   region              = "us-west-2"
