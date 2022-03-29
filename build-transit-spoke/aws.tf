@@ -195,12 +195,15 @@ module "tableau5" {
   security_domain                  = aviatrix_segmentation_security_domain.tableau.domain_name
   ha_gw                            = false
   included_advertised_spoke_routes = "10.33.1.1/32,10.33.1.2/32"
+  use_existing_vpc                 = true
+  vpc_id                           = var.tableau5_vpc_id
+  gw_subnet                        = var.tableau5_gw_subnet
 }
 
 module "tableau5_nat" {
   source          = "./modules/mc-overlap-nat-spoke"
   spoke_gw_object = module.tableau5.spoke_gateway
-  spoke_cidrs     = [module.tableau5.vpc.cidr]
+  spoke_cidrs     = ["10.3.0.0/16"]
   transit_gw_name = module.awstgw14.transit_gateway.gw_name
   gw1_snat_addr   = "10.33.1.1"
   gw2_snat_addr   = "10.33.1.2"

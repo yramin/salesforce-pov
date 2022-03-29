@@ -62,6 +62,14 @@ variable "aviatrix_copilot_ip" {
   type = string
 }
 
+variable "tableau5_vpc_id" {
+  type = string
+}
+
+variable "tableau5_gw_subnet" {
+  type = string
+}
+
 # variable "onprem_csr_username" {
 #   type = string
 # }
