@@ -78,7 +78,6 @@ resource "aws_iam_role_policy_attachment" "pan_bootstrap_role_policy_attachment"
 resource "time_sleep" "wait_for_fw_instances" {
   create_duration = "15m"
   depends_on = [
-    module.awstgw13,
     module.awstgw14
   ]
 }
