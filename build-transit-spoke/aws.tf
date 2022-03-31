@@ -156,7 +156,7 @@ module "awstgw14" {
   iam_role_1              = var.ec2_role_name
   enable_segmentation     = true
   insane_mode             = true
-  firewall_image_version = "10.1.4"
+  firewall_image_version  = "10.1.4"
 }
 
 module "prod3" {
