@@ -3,6 +3,7 @@
 ## Prerequisites
 
 - AWS Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
+- GCP Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference#authentication
 - Increase VPC and Elastic IP quotas in us-west-2 and us-east-1.
 - Subscribe to the following AMIs:
   - Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q

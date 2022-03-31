@@ -107,3 +107,43 @@ data "aviatrix_firenet_vendor_integration" "awstgw14_fw2" {
     time_sleep.wait_for_fw_instances
   ]
 }
+
+module "gcp_pan_bootstrap_storage" {
+  source           = "terraform-google-modules/cloud-storage/google"
+  version          = "3.2.0"
+  prefix           = "salesforce"
+  project_id       = var.gcloud_project_id
+  names            = ["panbootstrap"]
+  location         = "us-west1"
+  randomize_suffix = true
+}
+
+resource "google_storage_bucket_object" "bootstrapxml" {
+  bucket = module.gcp_pan_bootstrap_storage.name
+  name   = "config/bootstrap.xml"
+  source = "pan/bootstrap.xml"
+}
+
+resource "google_storage_bucket_object" "initcfgtxt" {
+  bucket = module.gcp_pan_bootstrap_storage.name
+  name   = "config/init-cfg.txt"
+  source = "pan/init-cfg.txt"
+}
+
+resource "google_storage_bucket_object" "content" {
+  bucket  = module.gcp_pan_bootstrap_storage.name
+  name    = "content/"
+  content = "content"
+}
+
+resource "google_storage_bucket_object" "license" {
+  bucket  = module.gcp_pan_bootstrap_storage.name
+  name    = "license/"
+  content = "license"
+}
+
+resource "google_storage_bucket_object" "software" {
+  bucket  = module.gcp_pan_bootstrap_storage.name
+  name    = "software/"
+  content = "software"
+}
