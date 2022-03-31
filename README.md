@@ -11,6 +11,10 @@
   - Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1: https://aws.amazon.com/marketplace/pp?sku=e9yfvyj3uag5uo5j2hjikv74n
   - ~~Cisco Cloud Services Router (CSR) 1000V: https://aws.amazon.com/marketplace/pp?sku=5tiyrfb5tasxk9gmnab39b843~~
 - An existing VPC in AWS us-east-1 with a 10.3.0.0/16 CIDR with a public subnet. In `build-transit-spoke/terraform.tfvars`, set `tableau5_vpc_id` to the VPC ID of the VPC and `tableau5_gw_subnet` to the CIDR of a public subnet in this VPC.
+- Any secondary AWS accounts (such as `aws_account_name_transit_spoke`) must have IAM roles, policies and trust relationships to the primary account configured. Aviatrix provides a CloudFormation script that can automatically configure this:
+  - Log into the Aviatrix controller.
+  - Go to Accounts -> Access Accounts -> Select AWS if it is not selected already.
+  - Scroll to Step 2 and click on the "Launch CloudFormation Script" button and run this in the secondary AWS accounts that need to be onboarded to the Aviatrix controller.
 
 ## Order To Deploy
 
