@@ -149,7 +149,7 @@ module "awstgw14" {
   region                  = "us-east-1"
   account                 = var.aws_account_name
   cidr                    = "10.14.0.0/16"
-  firewall_image          = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
+  firewall_image          = "Palo Alto Networks VM-Series Next-Generation Firewall (BYOL)"
   prefix                  = false
   suffix                  = false
   bootstrap_bucket_name_1 = aws_s3_bucket.pan_bootstrap_s3.bucket
