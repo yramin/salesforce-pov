@@ -4,6 +4,13 @@
 
 - AWS Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
 - GCP Terraform provider authentication should be configured. See https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference#authentication
+  - Option 1: Install `gcloud` CLI and configure authentication.
+  - Option 2: In `build-transit-spoke/main.tf`, specify the path to the .json for GCP for `credentials` in the Google provider code block.
+    ```
+    provider "google" {
+    credentials = "/Users/ronaldlee/Desktop/gcp-credentials/gcp-rlee-01.json"
+    }
+    ```
 - Increase VPC and Elastic IP quotas in us-west-2 and us-east-1.
 - Subscribe to the following AMIs:
   - Aviatrix Controller: https://aws.amazon.com/marketplace/pp?sku=2ewplxno8kih1clboffpdrp9q

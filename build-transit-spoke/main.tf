@@ -9,6 +9,10 @@ provider "aws" {
   region = "us-west-2"
 }
 
+provider "google" {
+  credentials = "/Users/ronaldlee/Desktop/gcp-credentials/gcp-rlee-01.json"
+}
+
 resource "aviatrix_account" "aws_ma" {
   account_name       = var.aws_account_name_ma
   cloud_type         = 1
