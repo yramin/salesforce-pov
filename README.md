@@ -31,6 +31,8 @@
 ## 1. build-controller-copilot
 
 - Update values in `build-controller-copilot/terraform.tfvars`.
+- If the Aviatrix IAM roles already exist in the AWS account to be used (possibly because an Aviatrix Controller was previously launched), IAM role creation can be disabled by setting `create_iam_roles` to false.
+- If you don't want to deploy an Application Load Balancer, set `create_alb` to false.
 
 ## 2. build-transit-spoke
 
