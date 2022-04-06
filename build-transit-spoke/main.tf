@@ -10,7 +10,7 @@ provider "aws" {
 }
 
 provider "google" {
-  # credentials = "/Users/ronaldlee/Desktop/gcp-credentials/gcp-rlee-01.json"
+  credentials = var.gcloud_project_credentials_filepath
 }
 
 resource "aviatrix_account" "aws_ma" {
