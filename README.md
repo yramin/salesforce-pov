@@ -8,7 +8,7 @@
   - Option 2: In `build-transit-spoke/main.tf`, specify the path to the .json for GCP for `credentials` in the Google provider code block.
     ```
     provider "google" {
-    credentials = "/Users/ronaldlee/Desktop/gcp-credentials/gcp-rlee-01.json"
+      credentials = "/Users/ronaldlee/Desktop/gcp-credentials/gcp-rlee-01.json"
     }
     ```
 - Increase VPC and Elastic IP quotas in us-west-2 and us-east-1.
