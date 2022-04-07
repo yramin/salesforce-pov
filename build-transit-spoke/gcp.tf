@@ -1,16 +1,17 @@
 # us-west1 
 
 module "gcptgw16" {
-  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.2"
-  cloud               = "GCP"
-  name                = "gcptgw16"
-  region              = "us-west1"
-  cidr                = "10.16.0.0/16"
-  account             = aviatrix_account.gcp.account_name
-  enable_segmentation = true
-  insane_mode         = true
-  instance_size       = "n1-highcpu-4"
+  source                = "./modules/gcp-transit-firenet"
+  account               = aviatrix_account.gcp.account_name
+  gcloud_project_id     = var.gcloud_project_id
+  transit_cidr          = "10.16.0.0/16"
+  firewall_cidr         = "10.200.0.0/18"
+  region                = "us-west1"
+  firewall_image        = "Palo Alto Networks VM-Series Next-Generation Firewall BYOL~9.1.3"
+  bootstrap_bucket_name = module.gcp_pan_bootstrap_storage.name
+  enable_segmentation   = true
+  hpe                   = true
+  instance_size         = "n1-highcpu-4"
 }
 
 module "prod7" {
