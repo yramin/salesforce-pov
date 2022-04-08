@@ -2,6 +2,7 @@
 
 module "gcptgw16" {
   source                = "./modules/gcp-transit-firenet"
+  name                  = "gcptgw16"
   account               = aviatrix_account.gcp.account_name
   gcloud_project_id     = var.gcloud_project_id
   transit_cidr          = "10.16.0.0/16"
