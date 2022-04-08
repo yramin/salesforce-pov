@@ -78,7 +78,8 @@ resource "aws_iam_role_policy_attachment" "pan_bootstrap_role_policy_attachment"
 resource "time_sleep" "wait_for_fw_instances" {
   create_duration = "15m"
   depends_on = [
-    module.awstgw14
+    module.awstgw14,
+    module.gcptgw16
   ]
 }
 
@@ -146,4 +147,30 @@ resource "google_storage_bucket_object" "software" {
   bucket  = module.gcp_pan_bootstrap_storage.name
   name    = "software/"
   content = "software"
+}
+
+data "aviatrix_firenet_vendor_integration" "gcptgw16_fw1" {
+  vpc_id      = module.gcptgw16.aviatrix_firewall_instance[0].vpc_id
+  instance_id = module.gcptgw16.aviatrix_firewall_instance[0].instance_id
+  vendor_type = "Palo Alto Networks VM-Series"
+  public_ip   = module.gcptgw16.aviatrix_firewall_instance[0].public_ip
+  username    = "admin-api"
+  password    = "Aviatrix12345#"
+  save        = true
+  depends_on = [
+    time_sleep.wait_for_fw_instances
+  ]
+}
+
+data "aviatrix_firenet_vendor_integration" "gcptgw16_fw2" {
+  vpc_id      = module.gcptgw16.aviatrix_firewall_instance[1].vpc_id
+  instance_id = module.gcptgw16.aviatrix_firewall_instance[1].instance_id
+  vendor_type = "Palo Alto Networks VM-Series"
+  public_ip   = module.gcptgw16.aviatrix_firewall_instance[1].public_ip
+  username    = "admin-api"
+  password    = "Aviatrix12345#"
+  save        = true
+  depends_on = [
+    time_sleep.wait_for_fw_instances
+  ]
 }
