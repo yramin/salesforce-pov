@@ -27,6 +27,7 @@ resource "aws_lb" "alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb[0].id]
   subnets            = [aws_subnet.subnet.id, aws_subnet.subnet_ha.id]
+  idle_timeout       = 3600
 }
 
 resource "aws_lb_target_group" "controller" {
