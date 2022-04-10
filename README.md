@@ -33,6 +33,15 @@
 - Update values in `build-controller-copilot/terraform.tfvars`.
 - If the Aviatrix IAM roles already exist in the AWS account to be used (possibly because an Aviatrix Controller was previously launched), IAM role creation can be disabled by setting `create_iam_roles` to false.
 - If you don't want to deploy an Application Load Balancer, set `create_alb` to false.
+- If restricting the IPs that can connect to the Aviatrix Controller in `build-controller-copilot/terraform.tfvars`, also include the VPC CIDR `10.12.0.0/16` so that the Lamba function is able to connect and intialize the Controller.
+  ```
+  incoming_ssl_cidr   = ["x.x.x.x/32", "10.12.0.0/16"]
+  ```
+- A successful deployment and intialization will have a message similar to the following in the Terraform output:
+  ```
+  result = "{\"status\": true, \"message\": \"Successfully initialized an Aviatrix Controller: x.x.x.x\"}"
+  ```
+- If the deployment fails for any reason (e.g. not subscribed to the required AMIs), fix the problems first. It is then recommended to `terraform destroy` everything and run `terraform apply` again.
 
 ## 2. build-transit-spoke
 
@@ -63,6 +72,7 @@
   - These usernames and hashed passwords are hardcoded in `bootstrap.xml` and are not based on any of the passwords in `terraform.tfvars`.
 - You can create a custom `bootstrap.xml` by following the instructions in https://docs.paloaltonetworks.com/vm-series/9-0/vm-series-deployment/bootstrap-the-vm-series-firewall/create-the-bootstrapxml-file.html
 - Vendor integration assumes that the admin-api user and password is as listed. If you create a new `bootstrap.xml`, either create the same admin-api user and password or update the vendor integration resources in `build-transit-spoke/pan.tf` with the username and password that was created:
+
   ```
   data "aviatrix_firenet_vendor_integration" "awstgw14_fw1" {
     vpc_id      = module.awstgw14.aviatrix_firewall_instance[0].vpc_id
@@ -101,18 +111,22 @@
   depends_on = [
     time_sleep.wait_for_fw_instances
   ]
-}
+  }
+  ```
 
 data "aviatrix_firenet_vendor_integration" "gcptgw16_fw2" {
-  vpc_id      = module.gcptgw16.aviatrix_firewall_instance[1].vpc_id
-  instance_id = module.gcptgw16.aviatrix_firewall_instance[1].instance_id
-  vendor_type = "Palo Alto Networks VM-Series"
-  public_ip   = module.gcptgw16.aviatrix_firewall_instance[1].public_ip
-  username    = "admin-api"
-  password    = "Aviatrix12345#"
-  save        = true
-  depends_on = [
-    time_sleep.wait_for_fw_instances
-  ]
+vpc_id = module.gcptgw16.aviatrix_firewall_instance[1].vpc_id
+instance_id = module.gcptgw16.aviatrix_firewall_instance[1].instance_id
+vendor_type = "Palo Alto Networks VM-Series"
+public_ip = module.gcptgw16.aviatrix_firewall_instance[1].public_ip
+username = "admin-api"
+password = "Aviatrix12345#"
+save = true
+depends_on = [
+time_sleep.wait_for_fw_instances
+]
 }
-  ```
+
+```
+
+```
