@@ -145,8 +145,8 @@ resource "aviatrix_segmentation_security_domain" "onprem" {
   ]
 }
 
-resource "aviatrix_segmentation_security_domain" "sdwan" {
-  domain_name = "SDWAN"
+resource "aviatrix_segmentation_security_domain" "sharedservices" {
+  domain_name = "SharedServices"
   depends_on = [
     module.awstgw13.transit_gateway,
     module.awstgw14.transit_gateway,
