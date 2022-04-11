@@ -74,6 +74,46 @@ resource "aviatrix_gateway" "psf" {
   public_subnet_filtering_guard_duty_enforced = false
 }
 
+resource "aws_subnet" "spoke_subnet" {
+  vpc_id     = data.aws_vpc.vpc.id
+  cidr_block = "10.12.5.0/24"
+  tags = {
+    Name = "spoke-subnet"
+  }
+}
+
+resource "aws_route_table" "spoke_rtb" {
+  vpc_id = data.aws_vpc.vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = data.aws_internet_gateway.igw.internet_gateway_id
+  }
+  tags = {
+    Name = "spoke-rtb"
+  }
+}
+
+resource "aws_route_table_association" "spoke_rtb_association" {
+  subnet_id      = aws_subnet.spoke_subnet.id
+  route_table_id = aws_route_table.spoke_rtb.id
+}
+
+module "sharedservices_spoke" {
+  source           = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version          = "1.1.0"
+  cloud            = "AWS"
+  name             = "sharedservices-spoke"
+  region           = "us-west-2"
+  cidr             = "10.12.0.0/16"
+  account          = var.aws_account_name
+  transit_gw       = module.awstgw14.transit_gateway.gw_name
+  security_domain  = aviatrix_segmentation_security_domain.sharedservices.domain_name
+  ha_gw            = false
+  use_existing_vpc = true
+  vpc_id           = data.aws_vpc.vpc.id
+  gw_subnet        = aws_subnet.spoke_subnet.cidr_block
+}
+
 module "awstgw13" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version             = "1.1.2"
