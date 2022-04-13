@@ -24,6 +24,11 @@ resource "aws_route_table" "psf_rtb" {
   tags = {
     Name = "psf-rtb"
   }
+  lifecycle {
+    ignore_changes = [
+      route
+    ]
+  }
 }
 
 resource "aws_route_table_association" "psf_rtb_association" {
@@ -47,6 +52,11 @@ resource "aws_route_table" "psf_rtb_ha" {
   }
   tags = {
     Name = "psf-rtb-ha"
+  }
+  lifecycle {
+    ignore_changes = [
+      route
+    ]
   }
 }
 
@@ -90,6 +100,11 @@ resource "aws_route_table" "spoke_rtb" {
   }
   tags = {
     Name = "spoke-rtb"
+  }
+  lifecycle {
+    ignore_changes = [
+      route
+    ]
   }
 }
 
