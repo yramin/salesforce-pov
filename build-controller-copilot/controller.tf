@@ -32,5 +32,5 @@ module "aviatrix-controller-initialize" {
   subnet_id           = aws_subnet.subnet.id
   ec2_role_name       = var.ec2_role_name
   app_role_name       = var.app_role_name
-  customer_license_id = "avx-internalse-1633369553.53"
+  customer_license_id = ""
 }

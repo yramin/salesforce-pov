@@ -1,7 +1,7 @@
-admin_email         = "yramesh@aviatrix.com"
+admin_email         = ""
 admin_password      = "Aviatrix123#"
-access_account_name = "yramesh"
-aws_account_id      = "299788451823"
+access_account_name = ""
+aws_account_id      = ""
 incoming_ssl_cidr   = ["104.55.33.187/32","10.12.0.0/16"]
 create_iam_roles    = false
 ec2_role_name       = "aviatrix-role-ec2"
@@ -10,4 +10,4 @@ controller_name     = "CustomerAviatrixController"
 copilot_name        = "CustomerviatrixCopilot"
 keypair             = "Mac_key3"
 create_alb          = false
-certificate_arn     = "arn:aws:acm:us-west-2:111111111111:certificate/11111111-2222-3333-4444-555555555555"
+:aws:acm:us-west-2:111111111111:certificate/11111111-2222-3333-4444-555555555555"certificate_arn     = "arn
