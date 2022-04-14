@@ -10,4 +10,4 @@ controller_name     = "CustomerAviatrixController"
 copilot_name        = "CustomerviatrixCopilot"
 keypair             = "Mac_key3"
 create_alb          = false
-:aws:acm:us-west-2:111111111111:certificate/11111111-2222-3333-4444-555555555555"certificate_arn     = "arn
+certificate_arn     = "arn:aws:acm:us-west-2:111111111111:certificate/11111111-2222-3333-4444-555555555555"
