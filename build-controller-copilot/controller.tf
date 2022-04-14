@@ -13,7 +13,7 @@ module "aviatrix-controller-build" {
   keypair                = var.keypair
   ec2role                = var.ec2_role_name
   incoming_ssl_cidr      = var.incoming_ssl_cidr
-  type                   = "MeteredPlatinumCopilot"
+  type                   = "BYOL"
   termination_protection = "false" # Set to true for production
   depends_on = [
     aws_key_pair.keypair
@@ -32,4 +32,5 @@ module "aviatrix-controller-initialize" {
   subnet_id           = aws_subnet.subnet.id
   ec2_role_name       = var.ec2_role_name
   app_role_name       = var.app_role_name
+  customer_license_id = "avx-internalse-1633369553.53"
 }

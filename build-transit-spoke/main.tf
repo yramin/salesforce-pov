@@ -100,8 +100,8 @@ module "transit-peering" {
   transit_gateways = [
     module.awstgw13.transit_gateway.gw_name,
     module.awstgw14.transit_gateway.gw_name,
-    module.gcptgw16.transit_gateway.gw_name,
-    module.gcptgw17.transit_gateway.gw_name
+    # module.gcptgw16.transit_gateway.gw_name,
+    # module.gcptgw17.transit_gateway.gw_name
   ]
 }
 
@@ -110,8 +110,8 @@ resource "aviatrix_segmentation_security_domain" "prod" {
   depends_on = [
     module.awstgw13.transit_gateway,
     module.awstgw14.transit_gateway,
-    module.gcptgw16.transit_gateway,
-    module.gcptgw17.transit_gateway
+    # module.gcptgw16.transit_gateway,
+    # module.gcptgw17.transit_gateway
   ]
 }
 
@@ -120,8 +120,8 @@ resource "aviatrix_segmentation_security_domain" "dev" {
   depends_on = [
     module.awstgw13.transit_gateway,
     module.awstgw14.transit_gateway,
-    module.gcptgw16.transit_gateway,
-    module.gcptgw17.transit_gateway
+    # module.gcptgw16.transit_gateway,
+    # module.gcptgw17.transit_gateway
   ]
 }
 
@@ -130,8 +130,8 @@ resource "aviatrix_segmentation_security_domain" "tableau" {
   depends_on = [
     module.awstgw13.transit_gateway,
     module.awstgw14.transit_gateway,
-    module.gcptgw16.transit_gateway,
-    module.gcptgw17.transit_gateway
+    # module.gcptgw16.transit_gateway,
+    # module.gcptgw17.transit_gateway
   ]
 }
 
@@ -140,8 +140,8 @@ resource "aviatrix_segmentation_security_domain" "onprem" {
   depends_on = [
     module.awstgw13.transit_gateway,
     module.awstgw14.transit_gateway,
-    module.gcptgw16.transit_gateway,
-    module.gcptgw17.transit_gateway
+    # module.gcptgw16.transit_gateway,
+    # module.gcptgw17.transit_gateway
   ]
 }
 
@@ -150,7 +150,7 @@ resource "aviatrix_segmentation_security_domain" "sharedservices" {
   depends_on = [
     module.awstgw13.transit_gateway,
     module.awstgw14.transit_gateway,
-    module.gcptgw16.transit_gateway,
-    module.gcptgw17.transit_gateway
+    # module.gcptgw16.transit_gateway,
+    # module.gcptgw17.transit_gateway
   ]
 }
